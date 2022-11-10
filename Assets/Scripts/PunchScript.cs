@@ -6,9 +6,19 @@ public class PunchScript : MonoBehaviour
 {
     public Animator animator;
     public int health;
-    public Rigidbody rb;
+    public GameObject plankR;
+    public GameObject plankL;
     public Transform impulsePoint;
     public PunchManager pm;
+    private Rigidbody rbL;
+    private Rigidbody rbR;
+
+
+    private void Start()
+    {
+        rbL = plankL.GetComponent<Rigidbody>();
+        rbR = plankR.GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -16,14 +26,14 @@ public class PunchScript : MonoBehaviour
             Punch();
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Punch();
         if (other.tag == "RHand")
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
         if (other.tag == "LHand")
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
-    }*/
+    }
 
     public void Punch()
     {
@@ -47,11 +57,13 @@ public class PunchScript : MonoBehaviour
 
     public void Break()
     {
-        // Enable object gravity
-        rb.useGravity = true;
+        // Enable object 
+        rbR.useGravity = true;
+        rbL.useGravity = true;
         // Allow object to split
         // Create impulse force in front of the object
-        rb.AddExplosionForce(1, impulsePoint.position, 0.1f);
+        rbR.AddExplosionForce(1, impulsePoint.position, 0.1f);
+        rbL.AddExplosionForce(1, impulsePoint.position, 0.1f);
         // Call Make() from manager
         pm.Make();
     }
@@ -60,6 +72,6 @@ public class PunchScript : MonoBehaviour
     {
         OVRInput.SetControllerVibration(1, 1, controller);
         yield return new WaitForSecondsRealtime(0.2f);
-        OVRInput.SetControllerVibration(1, 1, controller);
+        OVRInput.SetControllerVibration(0, 0, controller);
     }
 }
