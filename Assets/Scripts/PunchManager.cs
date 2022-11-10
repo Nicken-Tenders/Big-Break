@@ -19,17 +19,18 @@ public class PunchManager : MonoBehaviour
         // Make next object the current object
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.parent.name == "PrimaryHand")
-        {
-            BroadcastMessage("Punch");
-            BroadcastMessage("Vibrate", OVRInput.Controller.RTouch);
-        }
-        if (other.transform.parent.name == "SecondaryHand")
-        {
-            BroadcastMessage("Punch");
-            BroadcastMessage("Vibrate", OVRInput.Controller.LTouch);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.transform.parent.name == "PrimaryHand")
+    //    {
+    //        BroadcastMessage("Punch");
+    //        BroadcastMessage("Vibrate", OVRInput.Controller.RTouch);
+
+    //    }
+    //    if (other.transform.parent.name == "SecondaryHand")
+    //    {
+    //        BroadcastMessage("Punch");
+    //        BroadcastMessage("Vibrate", OVRInput.Controller.LTouch);
+    //    }
+    //}
 }
