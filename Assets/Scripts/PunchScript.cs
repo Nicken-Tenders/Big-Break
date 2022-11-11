@@ -28,11 +28,19 @@ public class PunchScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Punch();
         if (other.tag == "RHand")
+        {
+            Debug.Log("Right Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
+            Punch();
+        }
+
         if (other.tag == "LHand")
+        {
+            Debug.Log("Left Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
+            Punch();
+        }
     }
 
     public void Punch()
@@ -60,6 +68,8 @@ public class PunchScript : MonoBehaviour
         // Enable object 
         rbR.useGravity = true;
         rbL.useGravity = true;
+        rbR.isKinematic = false;
+        rbL.isKinematic = false;
         // Allow object to split
         // Create impulse force in front of the object
         rbR.AddExplosionForce(1, impulsePoint.position, 0.1f);
