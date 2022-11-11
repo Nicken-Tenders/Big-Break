@@ -78,6 +78,7 @@ public class PunchScript : MonoBehaviour
         rbL.AddExplosionForce(1, impulsePoint.position, 0.1f);
         // Call Make() from manager
         pm.Make();
+        // Unparent the shrapnel
     }
 
     public IEnumerator Vibrate(OVRInput.Controller controller)
