@@ -9,7 +9,7 @@ public class PunchManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ///Make();
+        Make();
     }
     
     public void Make()
@@ -18,4 +18,19 @@ public class PunchManager : MonoBehaviour
         // Fade in next object from queue
         // Make next object the current object
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.transform.parent.name == "PrimaryHand")
+    //    {
+    //        BroadcastMessage("Punch");
+    //        BroadcastMessage("Vibrate", OVRInput.Controller.RTouch);
+
+    //    }
+    //    if (other.transform.parent.name == "SecondaryHand")
+    //    {
+    //        BroadcastMessage("Punch");
+    //        BroadcastMessage("Vibrate", OVRInput.Controller.LTouch);
+    //    }
+    //}
 }
