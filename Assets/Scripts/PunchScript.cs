@@ -46,9 +46,10 @@ public class PunchScript : MonoBehaviour
     public void Punch()
     {
         // Give animator random amount of z angle to twist from -45 to 45
-        ///animator.SetFloat("Twist", Random.Range(-45, 45));
+        int rn = Random.Range(1, 4);
         // Animator plays punched clip with given value
-        animator.SetTrigger("Punched");
+        /// animator.SetTrigger("Punched" + rn);
+        animator.Play("Punched" + rn);
         // Vibrate controller
         /// if (lefthand)
         /// StartCoroutine(Vibrate(Controller.LTouch));
@@ -81,7 +82,7 @@ public class PunchScript : MonoBehaviour
     public IEnumerator Vibrate(OVRInput.Controller controller)
     {
         OVRInput.SetControllerVibration(1, 1, controller);
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         OVRInput.SetControllerVibration(0, 0, controller);
     }
 }
