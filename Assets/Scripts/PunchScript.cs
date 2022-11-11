@@ -12,6 +12,7 @@ public class PunchScript : MonoBehaviour
     public PunchManager pm;
     private Rigidbody rbL;
     private Rigidbody rbR;
+    public Panel panel;
 
 
     private void Start()
