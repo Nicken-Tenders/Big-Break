@@ -12,11 +12,13 @@ public class PunchScript : MonoBehaviour
     public PunchManager pm;
     private Rigidbody rbL;
     private Rigidbody rbR;
+    public GameObject headTransform;
     public Panel panel;
 
 
     private void Start()
     {
+        transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
         rbL = plankL.GetComponent<Rigidbody>();
         rbR = plankR.GetComponent<Rigidbody>();
     }
@@ -74,8 +76,8 @@ public class PunchScript : MonoBehaviour
         rbL.isKinematic = false;
         // Allow object to split
         // Create impulse force in front of the object
-        rbR.AddExplosionForce(1, impulsePoint.position, 0.1f);
-        rbL.AddExplosionForce(1, impulsePoint.position, 0.1f);
+        rbR.AddExplosionForce(100, impulsePoint.position, 0.1f);
+        rbL.AddExplosionForce(100, impulsePoint.position, 0.1f);
         // Call Make() from manager
         pm.Make();
         // Unparent the shrapnel
