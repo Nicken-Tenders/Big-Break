@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Wood
   model: {fileID: 4590652822143491161, guid: fd6555db4c23a464e833ea0e6cd7a3df, type: 3}
-  health: 3
+  health: 5
