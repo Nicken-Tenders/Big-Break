@@ -160,7 +160,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Liminal.BigBreak2
+    Android: com.Liminal.BigBreak3
     Standalone: com.Liminal.BigBreak
   buildNumber: {}
   AndroidBundleVersionCode: 1

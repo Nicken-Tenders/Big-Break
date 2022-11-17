@@ -14,6 +14,7 @@ public class PanelManager : MonoBehaviour
     public int currentHealth;
     private GameObject currentPanel;
     private List<GameObject> panelComponents = new List<GameObject>();
+    private GameObject activePanel;
 
 
     private void Start()
@@ -36,13 +37,14 @@ public class PanelManager : MonoBehaviour
         {
             Debug.Log("Right Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
+            Punch();
         }
         else if (other.tag == "LHand")
         {
             Debug.Log("Left Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
+            Punch();
         }
-        Punch();
     }
 
     public void Punch()
@@ -76,6 +78,10 @@ public class PanelManager : MonoBehaviour
         }
         // Call CreatePanel()
         panelIndex++;
+        if (panelIndex >= panels.Length)
+        {
+            panelIndex = 0;
+        }
         CreatePanel();
         // Unparent the shrapnel
     }
@@ -91,9 +97,9 @@ public class PanelManager : MonoBehaviour
     public void CreatePanel()
     {
         // Clear up parts of the previous panel
-        if (currentPanel != null)
+        if (activePanel != null)
         {
-            //Destroy(currentPanel);
+            //Destroy(activePanel);
         }
         // Checks if the panel at that index point exists
         if (panelIndex < panels.Length)
@@ -101,18 +107,19 @@ public class PanelManager : MonoBehaviour
             // Set up current panel
             currentPanel = panels[panelIndex].model;
             // Get Object Health
+            Debug.Log($"Panel Health: {panels[panelIndex].health}");
             currentHealth = panels[panelIndex].health;
             // Instantiate panel
-            var punchingPanel = Instantiate(currentPanel, transform.position, transform.rotation);
-            punchingPanel.transform.parent = gameObject.transform;
+            activePanel = Instantiate(currentPanel, transform.position, transform.rotation);
+            activePanel.transform.parent = gameObject.transform;
             // Clear list of components
             panelComponents.Clear();
-            // Get a list of all childenren of the panel model
+            // Get a list of all children of the panel model
             for (int i = 0; i < currentPanel.transform.childCount; i++)
             {
-                Debug.Log("Index: " + i);
-                panelComponents.Add(punchingPanel.transform.GetChild(i).gameObject);
+                panelComponents.Add(activePanel.transform.GetChild(i).gameObject);
             }
+            Debug.Log("Current Health: " + currentHealth);
         }
     }
 }
