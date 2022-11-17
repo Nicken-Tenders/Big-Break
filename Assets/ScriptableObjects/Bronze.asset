@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fbb6d7e7eebec499f642536f7b2f77, type: 3}
+  m_Name: Bronze
+  m_EditorClassIdentifier: 
+  name: Bronze
+  model: {fileID: 6451815751990633776, guid: 26c394e2bb8331e4fb4efb27cffe7572, type: 3}
+  health: 5
