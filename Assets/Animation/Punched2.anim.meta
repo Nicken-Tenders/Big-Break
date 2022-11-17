@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Animation/Punched2.anim.meta
-guid: 5d6c5ee69ac046040af959cfaf925634
+guid: ecef508b8b01cef40bccf2ec6ccbfe98
 NativeFormatImporter:
-========
-guid: 60c906edd3f7e784da828bcf934e72b0
-folderAsset: yes
-DefaultImporter:
->>>>>>>> master:Assets/Oculus/VR.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
