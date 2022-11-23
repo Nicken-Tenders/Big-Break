@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37fbb6d7e7eebec499f642536f7b2f77, type: 3}
-  m_Name: Bronze
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  name: Bronze
-  model: {fileID: 6451815751990633776, guid: 26c394e2bb8331e4fb4efb27cffe7572, type: 3}
-  health: 5
+  name: Wood
+  model: {fileID: 4590652822143491161, guid: fd6555db4c23a464e833ea0e6cd7a3df, type: 3}
+  health: 8
+  soundList: {fileID: 11400000, guid: 6e6885b63c07cfe46b9fe3efb603e708, type: 2}
+  breakEffect: {fileID: 8300000, guid: 87a1f329c6b54864d9552c288157af25, type: 3}
