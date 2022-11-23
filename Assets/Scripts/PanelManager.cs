@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
+    [Header("References")]
     public Animator animator;
     public Transform impulsePoint;
     public PunchManager pm;
     public GameObject headTransform;
-    
+
+    [Header("Panel")]
     public Panel[] panels;
     public int panelIndex = 0;
-    public int currentHealth;
     private GameObject currentPanel;
+    public int currentHealth;
     private List<GameObject> panelComponents = new List<GameObject>();
     private GameObject activePanel;
+
+    [Header("Sounds")]
+    private AudioSource punchSource;
+    public AudioSource matSource;
+    public SoundEffects punchSounds;
+    [SerializeField] private SoundEffects materialSounds;
 
 
     private void Start()
     {
         CreatePanel();
+        punchSource = GetComponent<AudioSource>();
         //transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
     }
 
@@ -54,11 +63,23 @@ public class PanelManager : MonoBehaviour
         // Animator plays punched clip with given value
         /// animator.SetTrigger("Punched" + rn);
         animator.Play("Punched" + rn);
+        // Play Sound Effect
+        punchSource.clip = punchSounds.soundEffects[Random.Range(0, punchSounds.soundEffects.Length)];
+        punchSource.Play();
         // Decrease object health
         currentHealth--;
 
         if (currentHealth <= 0)
+        {
+            matSource.clip = panels[panelIndex].breakEffect;
+            matSource.Play();
             Break();
+        }
+        else
+        {
+            matSource.clip = materialSounds.soundEffects[Random.Range(0, materialSounds.soundEffects.Length)];
+            matSource.Play();
+        }
     }
 
     public void Break()
@@ -119,7 +140,7 @@ public class PanelManager : MonoBehaviour
             {
                 panelComponents.Add(activePanel.transform.GetChild(i).gameObject);
             }
-            Debug.Log("Current Health: " + currentHealth);
+            materialSounds = panels[panelIndex].soundList;
         }
     }
 }
