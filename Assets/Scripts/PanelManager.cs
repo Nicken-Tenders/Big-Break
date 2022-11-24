@@ -58,10 +58,8 @@ public class PanelManager : MonoBehaviour
 
     public void Punch()
     {
-        // Give animator random amount of z angle to twist from -45 to 45
+        // Give animator random clip to play
         int rn = Random.Range(1, 4);
-        // Animator plays punched clip with given value
-        /// animator.SetTrigger("Punched" + rn);
         animator.Play("Punched" + rn);
         // Play Sound Effect
         punchSource.clip = punchSounds.soundEffects[Random.Range(0, punchSounds.soundEffects.Length)];
@@ -75,6 +73,10 @@ public class PanelManager : MonoBehaviour
             matSource.Play();
             Break();
         }
+        else if (currentHealth == 3)
+        {
+            // break off a small piece
+        }
         else
         {
             matSource.clip = materialSounds.soundEffects[Random.Range(0, materialSounds.soundEffects.Length)];
@@ -84,18 +86,16 @@ public class PanelManager : MonoBehaviour
 
     public void Break()
     {
-        // Enable object 
+        // Enable object gravity
         foreach (GameObject child in panelComponents)
         {
-            child.GetComponent<Rigidbody>().useGravity = true;
-            child.GetComponent<Rigidbody>().isKinematic = false;
-        }
-        // Allow object to split
-        // Create impulse force in front of the object
-        foreach (GameObject child in panelComponents)
-        {
-            child.GetComponent<Rigidbody>().AddExplosionForce(100, impulsePoint.position, 0.1f);
-            child.GetComponent<Rigidbody>().isKinematic = false;
+            var rb = child.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+
+            // Create impulse force in front of the object
+            rb.AddExplosionForce(100, impulsePoint.position, 0.2f);
+            StartCoroutine(Fade(child));
         }
         // Call CreatePanel()
         panelIndex++;
@@ -105,6 +105,20 @@ public class PanelManager : MonoBehaviour
         }
         CreatePanel();
         // Unparent the shrapnel
+    }
+
+    public IEnumerator Fade(GameObject child)
+    {
+        var mat = child.GetComponent<MeshRenderer>().material;
+        // Fade out panel
+        yield return new WaitForSecondsRealtime(3);
+        float t = 0;
+        while (mat.color.a > 0)
+        {
+            //float t = Mathf.Lerp(0, 1, );
+            t += Time.deltaTime;
+            mat.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
+        }
     }
 
     public IEnumerator Vibrate(OVRInput.Controller controller)
