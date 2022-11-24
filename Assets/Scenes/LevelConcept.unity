@@ -816,12 +816,14 @@ MonoBehaviour:
   pm: {fileID: 276918991}
   headTransform: {fileID: 1682080734}
   panels:
-  - {fileID: 11400000, guid: e251bab63b96a1b4f87bd319d3447563, type: 2}
-  - {fileID: 11400000, guid: 1f6d2d324225a7840b964d421ebcf4a2, type: 2}
   - {fileID: 11400000, guid: d1583dcdeebb41343bda603e4b24d92a, type: 2}
+  - {fileID: 11400000, guid: 1f6d2d324225a7840b964d421ebcf4a2, type: 2}
+  - {fileID: 11400000, guid: e251bab63b96a1b4f87bd319d3447563, type: 2}
   panelIndex: 0
   currentHealth: 0
   hitsToBreakOff: 0
+  corePiecesList: []
+  breakOffPiecesList: []
   matSource: {fileID: 243125499}
   punchSounds: {fileID: 11400000, guid: 5107cdeec8e2d5d48ba6d608c2ab4d2b, type: 2}
   materialSounds: {fileID: 0}

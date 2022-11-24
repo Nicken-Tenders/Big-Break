@@ -13,11 +13,12 @@ public class PanelManager : MonoBehaviour
     [Header("Panel")]
     public Panel[] panels;
     public int panelIndex = 0;
-    private GameObject currentPanel;
+    private GameObject panelModel;
     public int currentHealth;
     public int hitsToBreakOff;
     private int numHits;
-    private List<GameObject> panelComponents = new List<GameObject>();
+    public List<GameObject> corePiecesList = new List<GameObject>();
+    public List<GameObject> breakOffPiecesList = new List<GameObject>();
     private GameObject activePanel;
 
     [Header("Sounds")]
@@ -68,6 +69,7 @@ public class PanelManager : MonoBehaviour
         punchSource.Play();
         // Decrease object health
         currentHealth--;
+        numHits++;
 
         if (currentHealth <= 0)
         {
@@ -75,9 +77,10 @@ public class PanelManager : MonoBehaviour
             matSource.Play();
             Break();
         }
-        else if (currentHealth == 3)
+        else if (numHits >= hitsToBreakOff && breakOffPiecesList.Count > 0)
         {
-            // break off a small piece
+            Debug.Log("Break");
+            Chip();
         }
         else
         {
@@ -86,18 +89,28 @@ public class PanelManager : MonoBehaviour
         }
     }
 
+    public void Chip()
+    {
+        Rigidbody chipRB = breakOffPiecesList[0].GetComponent<Rigidbody>();
+        chipRB.isKinematic = false;
+        chipRB.useGravity = true;
+        chipRB.AddExplosionForce(100, impulsePoint.position, 0.2f);
+        breakOffPiecesList.Remove(breakOffPiecesList[0]);
+        numHits = 0;
+    }
+
     public void Break()
     {
         // Enable object gravity
-        foreach (GameObject child in panelComponents)
+        foreach (GameObject child in corePiecesList)
         {
-            var rb = child.GetComponent<Rigidbody>();
-            rb.isKinematic = false;
-            rb.useGravity = true;
+            Rigidbody childRB = child.GetComponent<Rigidbody>();
+            childRB.isKinematic = false;
+            childRB.useGravity = true;
 
             // Create impulse force in front of the object
-            rb.AddExplosionForce(100, impulsePoint.position, 0.2f);
-            StartCoroutine(Fade(child));
+            childRB.AddExplosionForce(100, impulsePoint.position, 0.2f);
+            //StartCoroutine(Fade(child));
         }
         // Call CreatePanel()
         panelIndex++;
@@ -107,27 +120,6 @@ public class PanelManager : MonoBehaviour
         }
         CreatePanel();
         // Unparent the shrapnel
-    }
-
-    public IEnumerator Fade(GameObject child)
-    {
-        var mat = child.GetComponent<MeshRenderer>().material;
-        // Fade out panel
-        yield return new WaitForSecondsRealtime(3);
-        float t = 0;
-        while (mat.color.a > 0)
-        {
-            //float t = Mathf.Lerp(0, 1, );
-            t += Time.deltaTime;
-            mat.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
-        }
-    }
-
-    public IEnumerator Vibrate(OVRInput.Controller controller)
-    {
-        OVRInput.SetControllerVibration(1, 1, controller);
-        yield return new WaitForSecondsRealtime(0.1f);
-        OVRInput.SetControllerVibration(0, 0, controller);
     }
 
     // Creates and instantiates the current pannel
@@ -142,19 +134,25 @@ public class PanelManager : MonoBehaviour
         if (panelIndex < panels.Length)
         {
             // Set up current panel
-            currentPanel = panels[panelIndex].model;
+            panelModel = panels[panelIndex].model;
             // Get Object Health
             Debug.Log($"Panel Health: {panels[panelIndex].health}");
             currentHealth = panels[panelIndex].health;
             // Instantiate panel
-            activePanel = Instantiate(currentPanel, transform.position, transform.rotation);
+            activePanel = Instantiate(panelModel, transform.position, transform.rotation);
             activePanel.transform.parent = gameObject.transform;
             // Clear list of components
-            panelComponents.Clear();
+            corePiecesList.Clear();
             // Get a list of all children of the panel model
-            for (int i = 0; i < currentPanel.transform.childCount; i++)
+            int childIndex = 0;
+            for (int i = childIndex; i < panels[panelIndex].breakOffPieces; i++)
             {
-                panelComponents.Add(activePanel.transform.GetChild(i).gameObject);
+                breakOffPiecesList.Add(activePanel.transform.GetChild(i).gameObject);
+                childIndex++;
+            }
+            for (int i = childIndex; i < panelModel.transform.childCount; i++)
+            {
+                corePiecesList.Add(activePanel.transform.GetChild(i).gameObject);
             }
             // Get numbers of hits to break off a piece
             hitsToBreakOff = currentHealth / panels[panelIndex].breakOffPieces;
@@ -162,5 +160,28 @@ public class PanelManager : MonoBehaviour
             // Add Sound Effects
             materialSounds = panels[panelIndex].soundList;
         }
+    }
+
+    /*
+    public IEnumerator Fade(GameObject child)
+    {
+        var mat = child.GetComponent<MeshRenderer>().material;
+        // Fade out panel
+        yield return new WaitForSecondsRealtime(3);
+        float t = 0;
+        while (mat.color.a > 0)
+        {
+            //float t = Mathf.Lerp(0, 1, );
+            t += Time.deltaTime;
+            mat.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
+        }
+    }
+    */
+
+    public IEnumerator Vibrate(OVRInput.Controller controller)
+    {
+        OVRInput.SetControllerVibration(1, 1, controller);
+        yield return new WaitForSecondsRealtime(0.1f);
+        OVRInput.SetControllerVibration(0, 0, controller);
     }
 }
