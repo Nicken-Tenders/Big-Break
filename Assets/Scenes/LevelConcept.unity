@@ -821,6 +821,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d1583dcdeebb41343bda603e4b24d92a, type: 2}
   panelIndex: 0
   currentHealth: 0
+  hitsToBreakOff: 0
   matSource: {fileID: 243125499}
   punchSounds: {fileID: 11400000, guid: 5107cdeec8e2d5d48ba6d608c2ab4d2b, type: 2}
   materialSounds: {fileID: 0}
@@ -1221,6 +1222,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.55
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: b19ed087e1d98744682ab12551d65837,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c01603911dd848840a85d6bd650a2107, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19ed087e1d98744682ab12551d65837, type: 3}
 --- !u!1 &873423688 stripped
@@ -1624,6 +1630,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.55
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 711a432268a98dd4a93a111dfe056d41,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c01603911dd848840a85d6bd650a2107, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711a432268a98dd4a93a111dfe056d41, type: 3}
 --- !u!1 &1332710823 stripped

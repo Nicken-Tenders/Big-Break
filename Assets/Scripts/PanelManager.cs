@@ -15,6 +15,8 @@ public class PanelManager : MonoBehaviour
     public int panelIndex = 0;
     private GameObject currentPanel;
     public int currentHealth;
+    public int hitsToBreakOff;
+    private int numHits;
     private List<GameObject> panelComponents = new List<GameObject>();
     private GameObject activePanel;
 
@@ -154,6 +156,10 @@ public class PanelManager : MonoBehaviour
             {
                 panelComponents.Add(activePanel.transform.GetChild(i).gameObject);
             }
+            // Get numbers of hits to break off a piece
+            hitsToBreakOff = currentHealth / panels[panelIndex].breakOffPieces;
+            Debug.Log(hitsToBreakOff);
+            // Add Sound Effects
             materialSounds = panels[panelIndex].soundList;
         }
     }
