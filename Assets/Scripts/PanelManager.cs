@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Liminal.SDK.Core;
+using Liminal.Core.Fader;
 
 public class PanelManager : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class PanelManager : MonoBehaviour
     public Transform impulsePoint;
     public PunchManager pm;
     public GameObject headTransform;
+    private int winNum;
+    private int breakNum;
 
     [Header("Panel")]
     public Panel[] panels;
@@ -30,6 +34,7 @@ public class PanelManager : MonoBehaviour
 
     private void Start()
     {
+        winNum = panels.Length;
         CreatePanel();
         punchSource = GetComponent<AudioSource>();
         //transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
@@ -101,6 +106,7 @@ public class PanelManager : MonoBehaviour
 
     public void Break()
     {
+        breakNum++;
         // Enable object gravity
         foreach (GameObject child in corePiecesList)
         {
@@ -118,7 +124,14 @@ public class PanelManager : MonoBehaviour
         {
             panelIndex = 0;
         }
-        CreatePanel();
+        if (breakNum >= winNum)
+        {
+            StartCoroutine(Win());
+        }
+        else
+        {
+            CreatePanel();
+        }
         // Unparent the shrapnel
     }
 
@@ -183,5 +196,19 @@ public class PanelManager : MonoBehaviour
         OVRInput.SetControllerVibration(1, 1, controller);
         yield return new WaitForSecondsRealtime(0.1f);
         OVRInput.SetControllerVibration(0, 0, controller);
+    }
+
+    public IEnumerator Win()
+    {
+        // Fanfare
+        // Confetti
+        ///Time.timeScale = 0.5f;
+        ///yield return new WaitForSecondsRealtime(2);
+        ///Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime(2);
+
+        var fader = ScreenFader.Instance;
+        fader.FadeTo(Color.black, 2);
+        ExperienceApp.End();
     }
 }
