@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   name: Wood
-  model: {fileID: 4590652822143491161, guid: fd6555db4c23a464e833ea0e6cd7a3df, type: 3}
+  model: {fileID: 7030504230105887810, guid: c5f8fc7caba93b44cb1ce26de6b85329, type: 3}
   breakOffPieces: 3
   health: 8
   soundList: {fileID: 11400000, guid: 6e6885b63c07cfe46b9fe3efb603e708, type: 2}
