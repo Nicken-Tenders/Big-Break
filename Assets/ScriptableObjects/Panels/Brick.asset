@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fbb6d7e7eebec499f642536f7b2f77, type: 3}
+  m_Name: Brick
+  m_EditorClassIdentifier: 
+  name: Brick
+  model: {fileID: 6446622850285753890, guid: 53d7337e49a50b3409e61b6fa49ab45d, type: 3}
+  breakOffPieces: 3
+  health: 6
+  soundList: {fileID: 11400000, guid: bff8cc51b631aac4c9d1dfe640548740, type: 2}
+  breakEffect: {fileID: 8300000, guid: 8b2de728e414c4a4282873395ae26040, type: 3}
