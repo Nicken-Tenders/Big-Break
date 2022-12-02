@@ -20,6 +20,7 @@ public class PanelManager : MonoBehaviour
     private GameObject panelModel;
     public int currentHealth;
     public int hitsToBreakOff;
+    public GameObject panelAnimator;
     private int numHits;
     public List<GameObject> corePiecesList = new List<GameObject>();
     public List<GameObject> breakOffPiecesList = new List<GameObject>();
@@ -42,7 +43,7 @@ public class PanelManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && gameObject.GetComponent<BoxCollider>().enabled == true)
         {
             Punch();
         }
@@ -99,7 +100,7 @@ public class PanelManager : MonoBehaviour
         Rigidbody chipRB = breakOffPiecesList[0].GetComponent<Rigidbody>();
         chipRB.isKinematic = false;
         chipRB.useGravity = true;
-        chipRB.AddExplosionForce(100, impulsePoint.position, 0.2f);
+        chipRB.AddExplosionForce(1000, impulsePoint.position, 4f);
         breakOffPiecesList.Remove(breakOffPiecesList[0]);
         numHits = 0;
     }
@@ -115,7 +116,7 @@ public class PanelManager : MonoBehaviour
             childRB.useGravity = true;
 
             // Create impulse force in front of the object
-            childRB.AddExplosionForce(100, impulsePoint.position, 0.2f);
+            childRB.AddExplosionForce(1000, impulsePoint.position, 4f);
             //StartCoroutine(Fade(child));
         }
         // Call CreatePanel()
@@ -130,11 +131,19 @@ public class PanelManager : MonoBehaviour
         }
         else
         {
-            CreatePanel();
+            StartCoroutine(Wait(1));
         }
         // Unparent the shrapnel
     }
 
+    public IEnumerator Wait(int waitTime)
+    {
+        BoxCollider col = gameObject.GetComponent<BoxCollider>();
+        col.enabled = false;
+        yield return new WaitForSeconds(waitTime);
+        CreatePanel();
+        col.enabled = true;
+    }
     // Creates and instantiates the current pannel
     public void CreatePanel()
     {
@@ -153,7 +162,7 @@ public class PanelManager : MonoBehaviour
             currentHealth = panels[panelIndex].health;
             // Instantiate panel
             activePanel = Instantiate(panelModel, transform.position, transform.rotation);
-            activePanel.transform.parent = gameObject.transform;
+            activePanel.transform.parent = panelAnimator.transform;
             // Clear list of components
             corePiecesList.Clear();
             // Get a list of all children of the panel model
@@ -207,8 +216,10 @@ public class PanelManager : MonoBehaviour
         ///Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(2);
 
+        gameObject.GetComponent<Collider>().enabled = false;
         var fader = ScreenFader.Instance;
         fader.FadeTo(Color.black, 2);
+        yield return new WaitForSecondsRealtime(2);
         ExperienceApp.End();
     }
 }
