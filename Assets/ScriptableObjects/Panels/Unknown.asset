@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Unknown
   model: {fileID: 96389160208135412, guid: 697b01be967c4014fa0bf1d647761ebe, type: 3}
   breakOffPieces: 5
-  health: 5
-  soundList: {fileID: 0}
-  breakEffect: {fileID: 0}
+  health: 15
+  soundList: {fileID: 11400000, guid: bff8cc51b631aac4c9d1dfe640548740, type: 2}
+  breakEffect: {fileID: 8300000, guid: 8b2de728e414c4a4282873395ae26040, type: 3}

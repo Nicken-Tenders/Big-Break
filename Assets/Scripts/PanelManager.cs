@@ -9,7 +9,6 @@ public class PanelManager : MonoBehaviour
     [Header("References")]
     public Animator animator;
     public Transform impulsePoint;
-    public PunchManager pm;
     public GameObject headTransform;
     private int winNum;
     private int breakNum;
