@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Styrofoam
   model: {fileID: 8245455238836150071, guid: f1af2852cc985014aa668b5401c91055, type: 3}
-  breakOffPieces: 1
+  breakOffPieces: 2
   health: 1
   soundList: {fileID: 11400000, guid: 36bf386571238884a8f575f0ad6cb282, type: 2}
   breakEffect: {fileID: 8300000, guid: 1d41a7327f0121f468058b4dfdd45ef3, type: 3}
