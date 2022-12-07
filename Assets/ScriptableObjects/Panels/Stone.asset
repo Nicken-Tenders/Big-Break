@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Stone
   model: {fileID: 6398753233445913904, guid: bc33997e2833ace458ff2d53562417db, type: 3}
+  particles: {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
   breakOffPieces: 4
   health: 7
   soundList: {fileID: 11400000, guid: 6826543fe95ec254d973c2ee0fcb53c8, type: 2}
