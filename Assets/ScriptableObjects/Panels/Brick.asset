@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Brick
   model: {fileID: 6446622850285753890, guid: 53d7337e49a50b3409e61b6fa49ab45d, type: 3}
+  particles: {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
   breakOffPieces: 3
   health: 6
   soundList: {fileID: 11400000, guid: bff8cc51b631aac4c9d1dfe640548740, type: 2}

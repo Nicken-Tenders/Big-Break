@@ -10,6 +10,8 @@ public class PanelManager : MonoBehaviour
     public Animator animator;
     public Transform impulsePoint;
     public GameObject headTransform;
+    public ParticleSystem leftFistParticle;
+    public ParticleSystem rightFistParticle;
     private int winNum;
     private int breakNum;
 
@@ -23,7 +25,9 @@ public class PanelManager : MonoBehaviour
     private int numHits;
     public List<GameObject> corePiecesList = new List<GameObject>();
     public List<GameObject> breakOffPiecesList = new List<GameObject>();
-    private GameObject activePanel;
+    private GameObject panelInstance;
+    private GameObject panelParticalSystem;
+    private GameObject particalInstance;
 
     [Header("Sounds")]
     private AudioSource punchSource;
@@ -37,6 +41,8 @@ public class PanelManager : MonoBehaviour
         winNum = panels.Length;
         CreatePanel();
         punchSource = GetComponent<AudioSource>();
+        rightFistParticle.Stop();
+        leftFistParticle.Stop();
         //transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
     }
 
@@ -54,12 +60,14 @@ public class PanelManager : MonoBehaviour
         {
             Debug.Log("Right Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
+            rightFistParticle.Play();
             Punch();
         }
         else if (other.tag == "LHand")
         {
             Debug.Log("Left Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
+            leftFistParticle.Play();
             Punch();
         }
     }
@@ -84,14 +92,17 @@ public class PanelManager : MonoBehaviour
         }
         else if (numHits >= hitsToBreakOff && breakOffPiecesList.Count > 0)
         {
-            Debug.Log("Break");
+            Debug.Log("Chip");
             Chip();
+            matSource.clip = materialSounds.soundEffects[Random.Range(0, materialSounds.soundEffects.Length)];
+            matSource.Play();
         }
         else
         {
             matSource.clip = materialSounds.soundEffects[Random.Range(0, materialSounds.soundEffects.Length)];
             matSource.Play();
         }
+        particalInstance.GetComponent<ParticleSystem>().Play();
     }
 
     public void Chip()
@@ -135,45 +146,45 @@ public class PanelManager : MonoBehaviour
         // Unparent the shrapnel
     }
 
-    public IEnumerator Wait(int waitTime)
-    {
-        BoxCollider col = gameObject.GetComponent<BoxCollider>();
-        col.enabled = false;
-        yield return new WaitForSeconds(waitTime);
-        CreatePanel();
-        col.enabled = true;
-    }
     // Creates and instantiates the current pannel
     public void CreatePanel()
     {
         // Clear up parts of the previous panel
-        if (activePanel != null)
+        if (panelInstance != null)
         {
             //Destroy(activePanel);
+        }
+        if (particalInstance != null)
+        {
+            Destroy(particalInstance);
         }
         // Checks if the panel at that index point exists
         if (panelIndex < panels.Length)
         {
             // Set up current panel
             panelModel = panels[panelIndex].model;
+            panelParticalSystem = panels[panelIndex].particles;
             // Get Object Health
             Debug.Log($"Panel Health: {panels[panelIndex].health}");
             currentHealth = panels[panelIndex].health;
             // Instantiate panel
-            activePanel = Instantiate(panelModel, transform.position, transform.rotation);
-            activePanel.transform.parent = panelAnimator.transform;
+            panelInstance = Instantiate(panelModel, transform.position, transform.rotation);
+            panelInstance.transform.parent = panelAnimator.transform;
+            particalInstance = Instantiate(panelParticalSystem, new Vector3 (transform.position.x, (transform.position.y + 1.3f), transform.position.z), transform.rotation);
+            particalInstance.GetComponent<ParticleSystem>().Stop();
+            particalInstance.transform.parent = this.transform;
             // Clear list of components
             corePiecesList.Clear();
             // Get a list of all children of the panel model
             int childIndex = 0;
             for (int i = childIndex; i < panels[panelIndex].breakOffPieces; i++)
             {
-                breakOffPiecesList.Add(activePanel.transform.GetChild(i).gameObject);
+                breakOffPiecesList.Add(panelInstance.transform.GetChild(i).gameObject);
                 childIndex++;
             }
             for (int i = childIndex; i < panelModel.transform.childCount; i++)
             {
-                corePiecesList.Add(activePanel.transform.GetChild(i).gameObject);
+                corePiecesList.Add(panelInstance.transform.GetChild(i).gameObject);
             }
             // Get numbers of hits to break off a piece
             hitsToBreakOff = currentHealth / panels[panelIndex].breakOffPieces;
@@ -204,6 +215,15 @@ public class PanelManager : MonoBehaviour
         OVRInput.SetControllerVibration(1, 1, controller);
         yield return new WaitForSecondsRealtime(0.1f);
         OVRInput.SetControllerVibration(0, 0, controller);
+    }
+
+    public IEnumerator Wait(int waitTime)
+    {
+        BoxCollider col = gameObject.GetComponent<BoxCollider>();
+        col.enabled = false;
+        yield return new WaitForSeconds(waitTime);
+        CreatePanel();
+        col.enabled = true;
     }
 
     public IEnumerator Win()

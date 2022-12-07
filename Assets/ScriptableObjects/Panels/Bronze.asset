@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Bronze
   model: {fileID: 6451815751990633776, guid: 26c394e2bb8331e4fb4efb27cffe7572, type: 3}
+  particles: {fileID: 1067536016464596, guid: 57e18706e2792ff4bb5561ed74b796e2, type: 3}
   breakOffPieces: 2
   health: 5
   soundList: {fileID: 11400000, guid: 36bf386571238884a8f575f0ad6cb282, type: 2}
