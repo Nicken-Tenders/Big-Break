@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New SoundEffect List", menuName = "Sound List")]
 public class SoundEffects : ScriptableObject
