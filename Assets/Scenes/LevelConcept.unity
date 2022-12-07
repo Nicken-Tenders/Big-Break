@@ -800,28 +800,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f66246a145dd941b9f96dc22d3ef5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 521564651}
-  impulsePoint: {fileID: 500019522}
-  headTransform: {fileID: 1682080734}
-  brokenPanels: {fileID: 1672747707}
-  explosionForce: 300
-  leftFistParticle: {fileID: 198054063550621953}
-  rightFistParticle: {fileID: 198054065239230572}
-  panels:
+  _animator: {fileID: 521564651}
+  _impulsePoint: {fileID: 500019522}
+  _headTransform: {fileID: 1682080734}
+  _brokenPanels: {fileID: 1672747707}
+  _panelAnimator: {fileID: 718046032}
+  _rightFistParticle: {fileID: 198054065239230572}
+  _leftFistParticle: {fileID: 198054063550621953}
+  _panels:
   - {fileID: 11400000, guid: 9d12b7e4cdaf4bb4997ba70d66f14f18, type: 2}
   - {fileID: 11400000, guid: e251bab63b96a1b4f87bd319d3447563, type: 2}
   - {fileID: 11400000, guid: 5b9bc109e5867df46ba0a5edad43c7a0, type: 2}
   - {fileID: 11400000, guid: d1583dcdeebb41343bda603e4b24d92a, type: 2}
   - {fileID: 11400000, guid: 8be6298a25de65945a66e86402c1bf7d, type: 2}
-  panelIndex: 0
-  currentHealth: 0
-  hitsToBreakOff: 0
-  panelAnimator: {fileID: 718046032}
-  corePiecesList: []
-  breakOffPiecesList: []
-  matSource: {fileID: 243125499}
-  punchSounds: {fileID: 11400000, guid: 5107cdeec8e2d5d48ba6d608c2ab4d2b, type: 2}
-  materialSounds: {fileID: 0}
+  _explosionForce: 300
+  _matSource: {fileID: 243125499}
+  _punchSounds: {fileID: 11400000, guid: 5107cdeec8e2d5d48ba6d608c2ab4d2b, type: 2}
 --- !u!82 &521564650
 AudioSource:
   m_ObjectHideFlags: 0
