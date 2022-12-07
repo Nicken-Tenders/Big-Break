@@ -10,6 +10,8 @@ public class PanelManager : MonoBehaviour
     public Animator animator;
     public Transform impulsePoint;
     public GameObject headTransform;
+    public GameObject brokenPanels;
+    public float explosionForce;
     public ParticleSystem leftFistParticle;
     public ParticleSystem rightFistParticle;
     private int winNum;
@@ -110,7 +112,7 @@ public class PanelManager : MonoBehaviour
         Rigidbody chipRB = breakOffPiecesList[0].GetComponent<Rigidbody>();
         chipRB.isKinematic = false;
         chipRB.useGravity = true;
-        chipRB.AddExplosionForce(1000, impulsePoint.position, 4f);
+        chipRB.AddExplosionForce(explosionForce, impulsePoint.position, 4f);
         breakOffPiecesList.Remove(breakOffPiecesList[0]);
         numHits = 0;
     }
@@ -126,7 +128,7 @@ public class PanelManager : MonoBehaviour
             childRB.useGravity = true;
 
             // Create impulse force in front of the object
-            childRB.AddExplosionForce(1000, impulsePoint.position, 4f);
+            childRB.AddExplosionForce(explosionForce, impulsePoint.position, 4f);
             //StartCoroutine(Fade(child));
         }
         // Call CreatePanel()
@@ -152,6 +154,7 @@ public class PanelManager : MonoBehaviour
         // Clear up parts of the previous panel
         if (panelInstance != null)
         {
+            panelInstance.transform.parent = brokenPanels.transform;
             //Destroy(activePanel);
         }
         if (particalInstance != null)
@@ -187,8 +190,11 @@ public class PanelManager : MonoBehaviour
                 corePiecesList.Add(panelInstance.transform.GetChild(i).gameObject);
             }
             // Get numbers of hits to break off a piece
-            hitsToBreakOff = currentHealth / panels[panelIndex].breakOffPieces;
-            Debug.Log(hitsToBreakOff);
+            if (panels[panelIndex].breakOffPieces > 0)
+            {
+                hitsToBreakOff = currentHealth / panels[panelIndex].breakOffPieces;
+                Debug.Log(hitsToBreakOff);
+            }
             // Add Sound Effects
             materialSounds = panels[panelIndex].soundList;
         }
@@ -228,6 +234,7 @@ public class PanelManager : MonoBehaviour
 
     public IEnumerator Win()
     {
+        gameObject.GetComponent<Collider>().enabled = false;
         // Fanfare
         // Confetti
         ///Time.timeScale = 0.5f;
@@ -235,7 +242,6 @@ public class PanelManager : MonoBehaviour
         ///Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(2);
 
-        gameObject.GetComponent<Collider>().enabled = false;
         var fader = ScreenFader.Instance;
         fader.FadeTo(Color.black, 2);
         yield return new WaitForSecondsRealtime(2);
