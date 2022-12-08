@@ -27,8 +27,9 @@ public class PanelManager : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] private AudioSource _matSource;
-    [SerializeField] private SoundEffects _punchSounds;
     [SerializeField] private AudioSource _victorySource;
+    [SerializeField] private AudioSource _music;
+    [SerializeField] private SoundEffects _punchSounds;
     private SoundEffects _materialSounds;
     private AudioSource _punchSource;
 
@@ -210,7 +211,7 @@ public class PanelManager : MonoBehaviour
             _matIndex = 0;
 
             // Instantiate particles
-            _particleInstance = Instantiate(_panelParticalSystem, new Vector3 (transform.position.x, (transform.position.y + 1.3f), transform.position.z), transform.rotation);
+            _particleInstance = Instantiate(_panelParticalSystem, new Vector3(transform.position.x, (transform.position.y + 1.3f), transform.position.z), Quaternion.Euler(transform.rotation.x - 90, transform.rotation.y, transform.rotation.z));
             _particleInstanceSystem = _particleInstance.GetComponent<ParticleSystem>();
             _particleInstanceSystem.Stop();
             _particleInstance.transform.parent = transform;
