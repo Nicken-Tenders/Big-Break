@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Styrofoam
   m_EditorClassIdentifier: 
   name: Styrofoam
-  model: {fileID: 8245455238836150071, guid: f1af2852cc985014aa668b5401c91055, type: 3}
+  model: {fileID: 2869718559633690095, guid: 6a099ddcfd350404380917161f547330, type: 3}
   particles: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
   breakOffPieces: 0
   health: 1

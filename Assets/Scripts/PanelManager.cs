@@ -19,6 +19,7 @@ public class PanelManager : MonoBehaviour
 
     [Header("Gameplay")]
     [SerializeField] private float _explosionForce;
+    [SerializeField] private int _matIndex;
     private int _winGoal;
     private int _breakDmg;
 
@@ -32,7 +33,7 @@ public class PanelManager : MonoBehaviour
     private int _panelIndex = 0;
     private int _currentHealth;
     private int _hitsToBreakOff;
-    private int _numHits;
+    private int _hitsToChip;
     private GameObject _panelModel;
     private GameObject _panelInstance;
     private GameObject _panelParticalSystem;
@@ -40,7 +41,6 @@ public class PanelManager : MonoBehaviour
     private ParticleSystem _particleInstanceSystem;
     private List<GameObject> _corePiecesList = new List<GameObject>();
     private List<GameObject> _breakOffPiecesList = new List<GameObject>();
-
 
     private void Start()
     {
@@ -96,7 +96,7 @@ public class PanelManager : MonoBehaviour
 
         // Decrease object health
         _currentHealth--;
-        _numHits++;
+        _hitsToChip++;
 
         if (_currentHealth <= 0)
         {
@@ -104,7 +104,7 @@ public class PanelManager : MonoBehaviour
             _matSource.Play();
             Break();
         }
-        else if (_numHits >= _hitsToBreakOff && _breakOffPiecesList.Count > 0)
+        else if (_hitsToChip >= _hitsToBreakOff && _breakOffPiecesList.Count > 0)
         {
             Debug.Log("Chip");
             Chip();
@@ -115,6 +115,10 @@ public class PanelManager : MonoBehaviour
         {
             _matSource.clip = _materialSounds.soundEffects[Random.Range(0, _materialSounds.soundEffects.Length)];
             _matSource.Play();
+        }
+        if (_currentHealth <= 0)
+        {
+
         }
 
         _particleInstanceSystem.Play();
@@ -127,7 +131,12 @@ public class PanelManager : MonoBehaviour
         chipRB.useGravity = true;
         chipRB.AddExplosionForce(_explosionForce, _impulsePoint.position, 4f);
         _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
-        _numHits = 0;
+        _hitsToChip = 0;
+        ++_matIndex;
+        for (int i = 0; i < _corePiecesList.Count; i++)
+        {
+            _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().ChangeMaterial(_matIndex);
+        }
     }
 
     public void Break()
@@ -172,6 +181,7 @@ public class PanelManager : MonoBehaviour
             //Destroy(activePanel);
         }
 
+        // Clear previous particles
         if (_particleInstance != null)
         {
             Destroy(_particleInstance);
@@ -192,7 +202,9 @@ public class PanelManager : MonoBehaviour
             // Instantiate panel
             _panelInstance = Instantiate(_panelModel, transform.position, transform.rotation);
             _panelInstance.transform.parent = _panelAnimator.transform;
+            _matIndex = 0;
 
+            // Instantiate particles
             _particleInstance = Instantiate(_panelParticalSystem, new Vector3 (transform.position.x, (transform.position.y + 1.3f), transform.position.z), transform.rotation);
             _particleInstanceSystem = _particleInstance.GetComponent<ParticleSystem>();
             _particleInstanceSystem.Stop();
@@ -201,7 +213,7 @@ public class PanelManager : MonoBehaviour
             // Clear list of components
             _corePiecesList.Clear();
 
-            // Get a list of all children of the panel model
+            // Get a list of all break of pieces
             int childIndex = 0;
             for (int i = childIndex; i < _panels[_panelIndex].breakOffPieces; i++)
             {
@@ -209,9 +221,17 @@ public class PanelManager : MonoBehaviour
                 ++childIndex;
             }
 
+            // Get a list of all core pieces
             for (int i = childIndex; i < _panelModel.transform.childCount; i++)
             {
-                _corePiecesList.Add(_panelInstance.transform.GetChild(i).gameObject);
+                _corePiecesList.Add(_panelInstance.transform.GetChild(i).gameObject);            
+            }
+
+            for (int i = 0; i < _corePiecesList.Count; i++)
+            {                
+                Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0));
+                Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>() == null);    
+                _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().SetMaterialOnInstantiate();
             }
 
             // Get numbers of hits to break off a piece
@@ -242,6 +262,7 @@ public class PanelManager : MonoBehaviour
     }
     */
 
+    // Vibrate Controller
     public IEnumerator Vibrate(OVRInput.Controller controller)
     {
         OVRInput.SetControllerVibration(1, 1, controller);
@@ -251,6 +272,7 @@ public class PanelManager : MonoBehaviour
         OVRInput.SetControllerVibration(0, 0, controller);
     }
 
+    // Wait between spawning the next panel
     public IEnumerator Wait(int waitTime)
     {
         _panelCollider.enabled = false;
@@ -259,6 +281,7 @@ public class PanelManager : MonoBehaviour
         _panelCollider.enabled = true;
     }
 
+    // Complete the victory condition
     public IEnumerator Win()
     {
         _panelCollider.enabled = false;
