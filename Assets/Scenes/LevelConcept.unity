@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.433504, g: 0.47022712, b: 0.50624615, a: 1}
+  m_IndirectSpecularColor: {r: 0.1575715, g: 0.18751127, b: 0.21986812, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -822,14 +822,16 @@ MonoBehaviour:
   _confetti: {fileID: 279265368}
   _panels:
   - {fileID: 11400000, guid: 9d12b7e4cdaf4bb4997ba70d66f14f18, type: 2}
-  - {fileID: 11400000, guid: 62f32c4660933f4428413d0f4be90643, type: 2}
-  - {fileID: 11400000, guid: 4950499cd61b4ca49b7bc4db7ff22612, type: 2}
+  - {fileID: 11400000, guid: a78726de85a5a2845808e2eb0d4b3bf2, type: 2}
+  - {fileID: 11400000, guid: 7eb88101398db894896ca76451901057, type: 2}
   - {fileID: 11400000, guid: 94f9067e32353fd47a04c1898ee74ab2, type: 2}
   - {fileID: 11400000, guid: d3c948f387781e649bd4e74cbaf8ec02, type: 2}
   - {fileID: 11400000, guid: a743bb59b8911d941be71093b6923975, type: 2}
   - {fileID: 11400000, guid: e79501e0db7de33479d418568e5fea99, type: 2}
   - {fileID: 11400000, guid: 23e12383409efba49a3cb13cc5686649, type: 2}
   - {fileID: 11400000, guid: ead48c873224bca4e98ddf8ffd0a00e7, type: 2}
+  - {fileID: 11400000, guid: 583deb8a1c21658418f444600c0af43e, type: 2}
+  - {fileID: 11400000, guid: 583deb8a1c21658418f444600c0af43e, type: 2}
   - {fileID: 11400000, guid: 583deb8a1c21658418f444600c0af43e, type: 2}
   _explosionForceMin: 200
   _explosionForceMax: 500
