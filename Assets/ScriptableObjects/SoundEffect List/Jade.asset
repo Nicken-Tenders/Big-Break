@@ -10,7 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7eb361b5aed21c4fac300c9b1515376, type: 3}
-  m_Name: New SoundEffect List
+  m_Name: Jade
   m_EditorClassIdentifier: 
-  name: 
-  soundEffects: []
+  name: Jade
+  soundEffects:
+  - {fileID: 8300000, guid: 7d8b716bec58dcb41bdd4a19267edd75, type: 3}
+  - {fileID: 8300000, guid: c94d0b412fd43bc45b7442c2a95c86e0, type: 3}
+  - {fileID: 8300000, guid: 988b87e99410fec4fa57ed4ef655f09f, type: 3}
+  - {fileID: 8300000, guid: 19d7ef5831091104abf936ce01851cba, type: 3}
+  - {fileID: 8300000, guid: a17a0fcb73f3afa42853b4cba9495c29, type: 3}
+  - {fileID: 8300000, guid: c8d351395330736438993e39fff20a7b, type: 3}
+  - {fileID: 8300000, guid: 2c39459fa11f26f49992a729e9a5c1b5, type: 3}

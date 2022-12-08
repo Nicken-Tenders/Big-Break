@@ -75,14 +75,12 @@ public class PanelManager : MonoBehaviour
     {
         if (other.tag == "RHand")
         {
-            Debug.Log("Right Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
             _rightFistParticle.Play();
             Punch();
         }
         else if (other.tag == "LHand")
         {
-            Debug.Log("Left Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
             _leftFistParticle.Play();
             Punch();
@@ -112,7 +110,6 @@ public class PanelManager : MonoBehaviour
         }
         else if (_hitsToChip >= _hitsToBreakOff)
         {
-            Debug.Log("Chip");
             Chip();
             _matSource.clip = _materialSounds.soundEffects[Random.Range(0, _materialSounds.soundEffects.Length)];
             _matSource.Play();
@@ -121,10 +118,6 @@ public class PanelManager : MonoBehaviour
         {
             _matSource.clip = _materialSounds.soundEffects[Random.Range(0, _materialSounds.soundEffects.Length)];
             _matSource.Play();
-        }
-        if (_currentHealth <= 0)
-        {
-
         }
 
         _particleInstanceSystem.Play();
@@ -142,9 +135,13 @@ public class PanelManager : MonoBehaviour
         }
         _hitsToChip = 0;
         ++_matIndex;
+        Debug.Log(_matIndex);
         for (int i = 0; i < _corePiecesList.Count; i++)
         {
-            _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().ChangeMaterial(_matIndex);
+            if (_matIndex <= _breakOffPiecesList.Count || _panels[_panelIndex].name == "LiminalPanel")
+            {
+                _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().ChangeMaterial(_matIndex);
+            }
         }
     }
 
@@ -205,7 +202,6 @@ public class PanelManager : MonoBehaviour
             _panelParticalSystem = _panels[_panelIndex].particles;
 
             // Get Object Health
-            Debug.Log($"Panel Health: {_panels[_panelIndex].health}");
             _currentHealth = _panels[_panelIndex].health;
 
             // Instantiate panel
@@ -238,9 +234,6 @@ public class PanelManager : MonoBehaviour
 
             for (int i = 0; i < _corePiecesList.Count; i++)
             {
-                Debug.Log(i);
-                Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0));
-                Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>() == null);    
                 _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().SetMaterialOnInstantiate();
             }
 
@@ -248,12 +241,10 @@ public class PanelManager : MonoBehaviour
             if (_panels[_panelIndex].breakOffPieces > 0)
             {
                 _hitsToBreakOff = _currentHealth / _panels[_panelIndex].breakOffPieces;
-                Debug.Log(_hitsToBreakOff);
             }
             else if (_panels[_panelIndex].name == "LiminalPanel")
             {
                 _hitsToBreakOff = _currentHealth / 5;
-                Debug.Log("Liminal Panel");
             }
 
             // Add Sound Effects
@@ -283,7 +274,6 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
-        Debug.Log("Win");
         _panelCollider.enabled = false;
         // Fanfare
         _victorySource.Play();
