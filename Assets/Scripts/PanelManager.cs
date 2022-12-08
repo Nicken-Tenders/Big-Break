@@ -75,14 +75,12 @@ public class PanelManager : MonoBehaviour
     {
         if (other.tag == "RHand")
         {
-            Debug.Log("Right Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
             _rightFistParticle.Play();
             Punch();
         }
         else if (other.tag == "LHand")
         {
-            Debug.Log("Left Punch");
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
             _leftFistParticle.Play();
             Punch();
@@ -110,9 +108,8 @@ public class PanelManager : MonoBehaviour
             _matSource.Play();
             Break();
         }
-        else if (_hitsToChip >= _hitsToBreakOff && _breakOffPiecesList.Count > 0)
+        else if (_hitsToChip >= _hitsToBreakOff)
         {
-            Debug.Log("Chip");
             Chip();
             _matSource.clip = _materialSounds.soundEffects[Random.Range(0, _materialSounds.soundEffects.Length)];
             _matSource.Play();
@@ -122,26 +119,29 @@ public class PanelManager : MonoBehaviour
             _matSource.clip = _materialSounds.soundEffects[Random.Range(0, _materialSounds.soundEffects.Length)];
             _matSource.Play();
         }
-        if (_currentHealth <= 0)
-        {
-
-        }
 
         _particleInstanceSystem.Play();
     }
 
     public void Chip()
     {
-        Rigidbody chipRB = _breakOffPiecesList[0].GetComponent<Rigidbody>();
-        chipRB.isKinematic = false;
-        chipRB.useGravity = true;
-        chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
-        _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
+        if (_breakOffPiecesList.Count > 0)
+        {
+            Rigidbody chipRB = _breakOffPiecesList[0].GetComponent<Rigidbody>();
+            chipRB.isKinematic = false;
+            chipRB.useGravity = true;
+            chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
+            _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
+        }
         _hitsToChip = 0;
         ++_matIndex;
+        Debug.Log(_matIndex);
         for (int i = 0; i < _corePiecesList.Count; i++)
         {
-            _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().ChangeMaterial(_matIndex);
+            if (_matIndex <= _breakOffPiecesList.Count || _panels[_panelIndex].name == "LiminalPanel")
+            {
+                _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().ChangeMaterial(_matIndex);
+            }
         }
     }
 
@@ -202,7 +202,6 @@ public class PanelManager : MonoBehaviour
             _panelParticalSystem = _panels[_panelIndex].particles;
 
             // Get Object Health
-            Debug.Log($"Panel Health: {_panels[_panelIndex].health}");
             _currentHealth = _panels[_panelIndex].health;
 
             // Instantiate panel
@@ -234,9 +233,7 @@ public class PanelManager : MonoBehaviour
             }
 
             for (int i = 0; i < _corePiecesList.Count; i++)
-            {                
-                Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0));
-                Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>() == null);    
+            {
                 _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().SetMaterialOnInstantiate();
             }
 
@@ -244,29 +241,16 @@ public class PanelManager : MonoBehaviour
             if (_panels[_panelIndex].breakOffPieces > 0)
             {
                 _hitsToBreakOff = _currentHealth / _panels[_panelIndex].breakOffPieces;
-                Debug.Log(_hitsToBreakOff);
+            }
+            else if (_panels[_panelIndex].name == "LiminalPanel")
+            {
+                _hitsToBreakOff = _currentHealth / 5;
             }
 
             // Add Sound Effects
             _materialSounds = _panels[_panelIndex].soundList;
         }
     }
-
-    /*
-    public IEnumerator Fade(GameObject child)
-    {
-        var mat = child.GetComponent<MeshRenderer>().material;
-        // Fade out panel
-        yield return new WaitForSecondsRealtime(3);
-        float t = 0;
-        while (mat.color.a > 0)
-        {
-            //float t = Mathf.Lerp(0, 1, );
-            t += Time.deltaTime;
-            mat.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
-        }
-    }
-    */
 
     // Vibrate Controller
     public IEnumerator Vibrate(OVRInput.Controller controller)
@@ -290,7 +274,6 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
-        Debug.Log("Win");
         _panelCollider.enabled = false;
         // Fanfare
         _victorySource.Play();

@@ -830,6 +830,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e79501e0db7de33479d418568e5fea99, type: 2}
   - {fileID: 11400000, guid: 23e12383409efba49a3cb13cc5686649, type: 2}
   - {fileID: 11400000, guid: ead48c873224bca4e98ddf8ffd0a00e7, type: 2}
+  - {fileID: 11400000, guid: 583deb8a1c21658418f444600c0af43e, type: 2}
   _explosionForceMin: 200
   _explosionForceMax: 500
   _matIndex: 0

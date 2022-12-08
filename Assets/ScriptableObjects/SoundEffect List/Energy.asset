@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb361b5aed21c4fac300c9b1515376, type: 3}
   m_Name: Energy
   m_EditorClassIdentifier: 
-  name: 
-  soundEffects: []
+  name: Energy
+  soundEffects:
+  - {fileID: 8300000, guid: 2173cfae7e629164f9fba5d1c997805f, type: 3}
+  - {fileID: 8300000, guid: e73604d6f41409a41bc2261682eca48a, type: 3}
+  - {fileID: 8300000, guid: 4315eff5c561d184d8cf725df3410dab, type: 3}
+  - {fileID: 8300000, guid: 9d323ab9f03345f4d8c445ef635f9966, type: 3}
+  - {fileID: 8300000, guid: d92caa60abb8f424e9ee5f67efa387cb, type: 3}

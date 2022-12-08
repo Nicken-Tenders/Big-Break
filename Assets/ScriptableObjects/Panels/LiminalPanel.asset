@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fbb6d7e7eebec499f642536f7b2f77, type: 3}
+  m_Name: LiminalPanel
+  m_EditorClassIdentifier: 
+  name: LiminalPanel
+  model: {fileID: 1500162201455971846, guid: 078c6b8c486be4f44be06ca4e2307607, type: 3}
+  particles: {fileID: 1303429800363182, guid: 9a905dc8b3b361840bb50c14f05926a9, type: 3}
+  breakOffPieces: 0
+  health: 15
+  soundList: {fileID: 11400000, guid: c530f95e51a71db479d5fa4c44b8535a, type: 2}
+  breakEffect: {fileID: 8300000, guid: e3efd402b75f71e4ca3424c0951c0a1d, type: 3}
