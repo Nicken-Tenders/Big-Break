@@ -261,22 +261,6 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    /*
-    public IEnumerator Fade(GameObject child)
-    {
-        var mat = child.GetComponent<MeshRenderer>().material;
-        // Fade out panel
-        yield return new WaitForSecondsRealtime(3);
-        float t = 0;
-        while (mat.color.a > 0)
-        {
-            //float t = Mathf.Lerp(0, 1, );
-            t += Time.deltaTime;
-            mat.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
-        }
-    }
-    */
-
     // Vibrate Controller
     public IEnumerator Vibrate(OVRInput.Controller controller)
     {
