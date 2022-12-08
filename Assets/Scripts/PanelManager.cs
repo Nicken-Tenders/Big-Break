@@ -110,7 +110,7 @@ public class PanelManager : MonoBehaviour
             _matSource.Play();
             Break();
         }
-        else if (_hitsToChip >= _hitsToBreakOff && _breakOffPiecesList.Count > 0)
+        else if (_hitsToChip >= _hitsToBreakOff)
         {
             Debug.Log("Chip");
             Chip();
@@ -132,11 +132,14 @@ public class PanelManager : MonoBehaviour
 
     public void Chip()
     {
-        Rigidbody chipRB = _breakOffPiecesList[0].GetComponent<Rigidbody>();
-        chipRB.isKinematic = false;
-        chipRB.useGravity = true;
-        chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
-        _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
+        if (_breakOffPiecesList.Count > 0)
+        {
+            Rigidbody chipRB = _breakOffPiecesList[0].GetComponent<Rigidbody>();
+            chipRB.isKinematic = false;
+            chipRB.useGravity = true;
+            chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
+            _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
+        }
         _hitsToChip = 0;
         ++_matIndex;
         for (int i = 0; i < _corePiecesList.Count; i++)
@@ -234,7 +237,8 @@ public class PanelManager : MonoBehaviour
             }
 
             for (int i = 0; i < _corePiecesList.Count; i++)
-            {                
+            {
+                Debug.Log(i);
                 Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0));
                 Debug.Log(_corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>() == null);    
                 _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().SetMaterialOnInstantiate();
@@ -245,6 +249,11 @@ public class PanelManager : MonoBehaviour
             {
                 _hitsToBreakOff = _currentHealth / _panels[_panelIndex].breakOffPieces;
                 Debug.Log(_hitsToBreakOff);
+            }
+            else if (_panels[_panelIndex].name == "LiminalPanel")
+            {
+                _hitsToBreakOff = _currentHealth / 5;
+                Debug.Log("Liminal Panel");
             }
 
             // Add Sound Effects
