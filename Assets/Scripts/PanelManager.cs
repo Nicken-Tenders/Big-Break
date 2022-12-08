@@ -29,6 +29,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private AudioSource _matSource;
     [SerializeField] private AudioSource _victorySource;
     [SerializeField] private AudioSource _music;
+    private bool _musicFade = false;
     [SerializeField] private SoundEffects _punchSounds;
     private SoundEffects _materialSounds;
     private AudioSource _punchSource;
@@ -68,6 +69,11 @@ public class PanelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && _panelCollider.enabled == true)
         {
             Punch();
+        }
+        
+        if (_musicFade == true)
+        {
+            _music.volume = _music.volume - (0.25f * Time.deltaTime); 
         }
     }
 
@@ -292,15 +298,14 @@ public class PanelManager : MonoBehaviour
     {
         Debug.Log("Win");
         _panelCollider.enabled = false;
-        // Fanfare
         _victorySource.Play();
-        // Confetti
         _confetti.Play();
         ///Time.timeScale = 0.5f;
         ///yield return new WaitForSecondsRealtime(2);
         ///Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(3);
 
+        _musicFade = true;
         var fader = ScreenFader.Instance;
         fader.FadeTo(Color.black, 2);
         yield return new WaitForSecondsRealtime(2);
