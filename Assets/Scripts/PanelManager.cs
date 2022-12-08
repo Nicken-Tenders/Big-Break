@@ -14,6 +14,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private GameObject _panelAnimator;
     [SerializeField] private ParticleSystem _rightFistParticle;
     [SerializeField] private ParticleSystem _leftFistParticle;
+    [SerializeField] private ParticleSystem _confetti;
     [SerializeField] private List<Panel> _panels;
     private BoxCollider _panelCollider;
 
@@ -26,6 +27,7 @@ public class PanelManager : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource _matSource;
     [SerializeField] private SoundEffects _punchSounds;
+    [SerializeField] private AudioSource _victorySound;
     private SoundEffects _materialSounds;
     private AudioSource _punchSource;
 
@@ -53,6 +55,7 @@ public class PanelManager : MonoBehaviour
 
         _rightFistParticle.Stop();
         _leftFistParticle.Stop();
+        _confetti.Stop();
 
 
         //transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
@@ -284,13 +287,16 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
+        Debug.Log("Win");
         _panelCollider.enabled = false;
         // Fanfare
+        _victorySound.Play();
         // Confetti
+        _confetti.Play();
         ///Time.timeScale = 0.5f;
         ///yield return new WaitForSecondsRealtime(2);
         ///Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(3);
 
         var fader = ScreenFader.Instance;
         fader.FadeTo(Color.black, 2);
