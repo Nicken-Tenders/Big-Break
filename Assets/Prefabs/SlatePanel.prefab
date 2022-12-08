@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: 5e879560c20911d40b026aa9cdae291c, type: 2}
   - {fileID: 2100000, guid: 524b872bb983d574591f7f01457203d1, type: 2}
   - {fileID: 2100000, guid: 2668c050b3c643d4081940c7097e1393, type: 2}
   - {fileID: 2100000, guid: 68723e29edf9a4642a22dd13753218e8, type: 2}
@@ -278,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: 5e879560c20911d40b026aa9cdae291c, type: 2}
   - {fileID: 2100000, guid: 524b872bb983d574591f7f01457203d1, type: 2}
   - {fileID: 2100000, guid: 2668c050b3c643d4081940c7097e1393, type: 2}
   - {fileID: 2100000, guid: 68723e29edf9a4642a22dd13753218e8, type: 2}
@@ -290,6 +292,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7595640996332403618}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: ac91830a6c74fdc4f82549712bf7faf1,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break4
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ac91830a6c74fdc4f82549712bf7faf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -345,11 +352,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: ac91830a6c74fdc4f82549712bf7faf1,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break4
-      objectReference: {fileID: 0}
     - target: {fileID: 2580637235743112853, guid: ac91830a6c74fdc4f82549712bf7faf1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -376,6 +378,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7595640996332403618}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 8efed1b2a02147f47b702ca0de06534c,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break5
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8efed1b2a02147f47b702ca0de06534c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -431,11 +438,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 8efed1b2a02147f47b702ca0de06534c,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break5
-      objectReference: {fileID: 0}
     - target: {fileID: 5024593752725879448, guid: 8efed1b2a02147f47b702ca0de06534c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -462,6 +464,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7595640996332403618}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 67f9da3af7305c244b6510a3266884f4,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8691214428619967357, guid: 67f9da3af7305c244b6510a3266884f4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e879560c20911d40b026aa9cdae291c, type: 2}
     - target: {fileID: -4216859302048453862, guid: 67f9da3af7305c244b6510a3266884f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -517,16 +529,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 67f9da3af7305c244b6510a3266884f4,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8691214428619967357, guid: 67f9da3af7305c244b6510a3266884f4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5e879560c20911d40b026aa9cdae291c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f9da3af7305c244b6510a3266884f4, type: 3}
 --- !u!1 &4759032901043531750 stripped
@@ -548,6 +550,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7595640996332403618}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: ac6c54d63c882a646bee281170a75d12,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4685561222167648164, guid: ac6c54d63c882a646bee281170a75d12,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e879560c20911d40b026aa9cdae291c, type: 2}
     - target: {fileID: -4216859302048453862, guid: ac6c54d63c882a646bee281170a75d12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -603,16 +615,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: ac6c54d63c882a646bee281170a75d12,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break2
-      objectReference: {fileID: 0}
-    - target: {fileID: -4685561222167648164, guid: ac6c54d63c882a646bee281170a75d12,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5e879560c20911d40b026aa9cdae291c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac6c54d63c882a646bee281170a75d12, type: 3}
 --- !u!1 &5615668737294686918 stripped

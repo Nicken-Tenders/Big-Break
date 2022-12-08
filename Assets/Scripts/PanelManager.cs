@@ -14,19 +14,22 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private GameObject _panelAnimator;
     [SerializeField] private ParticleSystem _rightFistParticle;
     [SerializeField] private ParticleSystem _leftFistParticle;
+    [SerializeField] private ParticleSystem _confetti;
     [SerializeField] private List<Panel> _panels;
     private BoxCollider _panelCollider;
 
     [Header("Gameplay")]
-    [SerializeField] private float _explosionForce;
+    [SerializeField] private float _explosionForceMin;
+    [SerializeField] private float _explosionForceMax;
     [SerializeField] private int _matIndex;
     private int _winGoal;
     private int _breakDmg;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource _matSource;
+    [SerializeField] private AudioSource _victorySource;
+    [SerializeField] private AudioSource _music;
     [SerializeField] private SoundEffects _punchSounds;
-    [SerializeField] private SoundEffects _winFanfare;
     private SoundEffects _materialSounds;
     private AudioSource _punchSource;
 
@@ -47,7 +50,6 @@ public class PanelManager : MonoBehaviour
     {
         _punchSource = GetComponent<AudioSource>();
         _panelCollider = GetComponent<BoxCollider>();
-        _animator = gameObject.GetComponentInParent<Animator>();
 
         _winGoal = _panels.Count;
 
@@ -55,6 +57,7 @@ public class PanelManager : MonoBehaviour
 
         _rightFistParticle.Stop();
         _leftFistParticle.Stop();
+        _confetti.Stop();
 
 
         //transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
@@ -90,7 +93,8 @@ public class PanelManager : MonoBehaviour
     {
         // Give animator random clip to play
         //int rn = Random.Range(1, 4);
-        _animator.SetTrigger("Shake 1");  // .Play("Punched" + rn);
+        //_animator.Play("Punched" + rn);
+        _animator.Play("Shake 1");
 
         // Play Sound Effect
         _punchSource.clip = _punchSounds.soundEffects[Random.Range(0, _punchSounds.soundEffects.Length)];
@@ -131,7 +135,7 @@ public class PanelManager : MonoBehaviour
         Rigidbody chipRB = _breakOffPiecesList[0].GetComponent<Rigidbody>();
         chipRB.isKinematic = false;
         chipRB.useGravity = true;
-        chipRB.AddExplosionForce(_explosionForce, _impulsePoint.position, 4f);
+        chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
         _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
         _hitsToChip = 0;
         ++_matIndex;
@@ -152,7 +156,7 @@ public class PanelManager : MonoBehaviour
             childRB.useGravity = true;
 
             // Create impulse force in front of the object
-            childRB.AddExplosionForce(_explosionForce, _impulsePoint.position, 4f);
+            childRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
             //StartCoroutine(Fade(child));
         }
 
@@ -207,7 +211,7 @@ public class PanelManager : MonoBehaviour
             _matIndex = 0;
 
             // Instantiate particles
-            _particleInstance = Instantiate(_panelParticalSystem, new Vector3 (transform.position.x, (transform.position.y + 1.3f), transform.position.z), transform.rotation);
+            _particleInstance = Instantiate(_panelParticalSystem, new Vector3(transform.position.x, (transform.position.y + 1.3f), transform.position.z), Quaternion.Euler(transform.rotation.x - 90, transform.rotation.y, transform.rotation.z));
             _particleInstanceSystem = _particleInstance.GetComponent<ParticleSystem>();
             _particleInstanceSystem.Stop();
             _particleInstance.transform.parent = transform;
@@ -286,13 +290,16 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
+        Debug.Log("Win");
         _panelCollider.enabled = false;
         // Fanfare
+        _victorySource.Play();
         // Confetti
+        _confetti.Play();
         ///Time.timeScale = 0.5f;
         ///yield return new WaitForSecondsRealtime(2);
         ///Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(3);
 
         var fader = ScreenFader.Instance;
         fader.FadeTo(Color.black, 2);

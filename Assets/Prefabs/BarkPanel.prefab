@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: bee363877fc96cd4ba4646feaecad5c7, type: 2}
   - {fileID: 2100000, guid: 02a1383708b41c9489810a8b0aed97c3, type: 2}
   - {fileID: 2100000, guid: e5461b048132d6d498773ff4db0b2daf, type: 2}
   - {fileID: 2100000, guid: c496403fbf1822e45888bdfa095fcc0e, type: 2}
@@ -120,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: bee363877fc96cd4ba4646feaecad5c7, type: 2}
   - {fileID: 2100000, guid: 02a1383708b41c9489810a8b0aed97c3, type: 2}
   - {fileID: 2100000, guid: e5461b048132d6d498773ff4db0b2daf, type: 2}
   - {fileID: 2100000, guid: c496403fbf1822e45888bdfa095fcc0e, type: 2}
@@ -257,6 +259,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2063835688812475641}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 53cb5807691a5b74483875110195e54d,
+        type: 3}
+      propertyPath: m_Name
+      value: wood2_panel_break4
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 53cb5807691a5b74483875110195e54d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -312,11 +319,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 53cb5807691a5b74483875110195e54d,
-        type: 3}
-      propertyPath: m_Name
-      value: wood2_panel_break4
-      objectReference: {fileID: 0}
     - target: {fileID: -783641480532383859, guid: 53cb5807691a5b74483875110195e54d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -343,6 +345,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2063835688812475641}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 031d252c3438046468ba6dc32edd31aa,
+        type: 3}
+      propertyPath: m_Name
+      value: wood2_panel_breakR
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 031d252c3438046468ba6dc32edd31aa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -398,11 +405,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 031d252c3438046468ba6dc32edd31aa,
-        type: 3}
-      propertyPath: m_Name
-      value: wood2_panel_breakR
-      objectReference: {fileID: 0}
     - target: {fileID: 7452940680392887528, guid: 031d252c3438046468ba6dc32edd31aa,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -435,6 +437,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2063835688812475641}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 0526bd1608b776a42b842ebe2b613ffb,
+        type: 3}
+      propertyPath: m_Name
+      value: wood2_panel_breakL
+      objectReference: {fileID: 0}
+    - target: {fileID: -6105693409466621055, guid: 0526bd1608b776a42b842ebe2b613ffb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bee363877fc96cd4ba4646feaecad5c7, type: 2}
     - target: {fileID: -4216859302048453862, guid: 0526bd1608b776a42b842ebe2b613ffb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -490,16 +502,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0526bd1608b776a42b842ebe2b613ffb,
-        type: 3}
-      propertyPath: m_Name
-      value: wood2_panel_breakL
-      objectReference: {fileID: 0}
-    - target: {fileID: -6105693409466621055, guid: 0526bd1608b776a42b842ebe2b613ffb,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: bee363877fc96cd4ba4646feaecad5c7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0526bd1608b776a42b842ebe2b613ffb, type: 3}
 --- !u!1 &993307847978468391 stripped

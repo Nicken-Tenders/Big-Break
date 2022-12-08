@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: b19b2132acad66d469358ff4318a644b, type: 2}
   - {fileID: 2100000, guid: 0a326a5f6c330de4389492fe57eb811a, type: 2}
   - {fileID: 2100000, guid: 9a4ac14b8e92cab4484afffa62152ec2, type: 2}
   - {fileID: 2100000, guid: 7e966e45bb0c34b46b3c1e9622bf1efb, type: 2}
@@ -248,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: b19b2132acad66d469358ff4318a644b, type: 2}
   - {fileID: 2100000, guid: 0a326a5f6c330de4389492fe57eb811a, type: 2}
   - {fileID: 2100000, guid: 9a4ac14b8e92cab4484afffa62152ec2, type: 2}
   - {fileID: 2100000, guid: 7e966e45bb0c34b46b3c1e9622bf1efb, type: 2}
@@ -290,6 +292,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2411534505143640475}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: ad2de45f14e96ce41a9369df654fab54,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8691214428619967357, guid: ad2de45f14e96ce41a9369df654fab54,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b19b2132acad66d469358ff4318a644b, type: 2}
     - target: {fileID: -4216859302048453862, guid: ad2de45f14e96ce41a9369df654fab54,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -345,16 +357,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: ad2de45f14e96ce41a9369df654fab54,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8691214428619967357, guid: ad2de45f14e96ce41a9369df654fab54,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b19b2132acad66d469358ff4318a644b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad2de45f14e96ce41a9369df654fab54, type: 3}
 --- !u!1 &8919923852277249546 stripped
@@ -376,6 +378,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2411534505143640475}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: d7f3e112031e23e4fa35226cceb8a744,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break4
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d7f3e112031e23e4fa35226cceb8a744,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -431,11 +438,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d7f3e112031e23e4fa35226cceb8a744,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break4
-      objectReference: {fileID: 0}
     - target: {fileID: 2580637235743112853, guid: d7f3e112031e23e4fa35226cceb8a744,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -462,6 +464,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2411534505143640475}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 0b9706587cc12f94f82d0ba947e09e6b,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_breakL
+      objectReference: {fileID: 0}
+    - target: {fileID: -6634815200310519380, guid: 0b9706587cc12f94f82d0ba947e09e6b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b19b2132acad66d469358ff4318a644b, type: 2}
     - target: {fileID: -4216859302048453862, guid: 0b9706587cc12f94f82d0ba947e09e6b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -517,16 +529,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0b9706587cc12f94f82d0ba947e09e6b,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_breakL
-      objectReference: {fileID: 0}
-    - target: {fileID: -6634815200310519380, guid: 0b9706587cc12f94f82d0ba947e09e6b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b19b2132acad66d469358ff4318a644b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b9706587cc12f94f82d0ba947e09e6b, type: 3}
 --- !u!1 &7860829985789886697 stripped
@@ -554,6 +556,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2411534505143640475}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 3e2e3be15853c93479416751f59b79fe,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_break5
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3e2e3be15853c93479416751f59b79fe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -609,11 +616,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 3e2e3be15853c93479416751f59b79fe,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_break5
-      objectReference: {fileID: 0}
     - target: {fileID: 5024593752725879448, guid: 3e2e3be15853c93479416751f59b79fe,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -640,6 +642,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2411534505143640475}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 0e557a516af9a7c4bb33fc9df0ffff81,
+        type: 3}
+      propertyPath: m_Name
+      value: stone4_panel_breakR
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0e557a516af9a7c4bb33fc9df0ffff81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -694,11 +701,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0e557a516af9a7c4bb33fc9df0ffff81,
-        type: 3}
-      propertyPath: m_Name
-      value: stone4_panel_breakR
       objectReference: {fileID: 0}
     - target: {fileID: -2762662742147732221, guid: 0e557a516af9a7c4bb33fc9df0ffff81,
         type: 3}
