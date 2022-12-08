@@ -26,6 +26,7 @@ public class PanelManager : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource _matSource;
     [SerializeField] private SoundEffects _punchSounds;
+    [SerializeField] private SoundEffects _winFanfare;
     private SoundEffects _materialSounds;
     private AudioSource _punchSource;
 
@@ -46,6 +47,7 @@ public class PanelManager : MonoBehaviour
     {
         _punchSource = GetComponent<AudioSource>();
         _panelCollider = GetComponent<BoxCollider>();
+        _animator = gameObject.GetComponentInParent<Animator>();
 
         _winGoal = _panels.Count;
 
@@ -87,8 +89,8 @@ public class PanelManager : MonoBehaviour
     public void Punch()
     {
         // Give animator random clip to play
-        int rn = Random.Range(1, 4);
-        _animator.Play("Punched" + rn);
+        //int rn = Random.Range(1, 4);
+        _animator.SetTrigger("Shake 1");  // .Play("Punched" + rn);
 
         // Play Sound Effect
         _punchSource.clip = _punchSounds.soundEffects[Random.Range(0, _punchSounds.soundEffects.Length)];
