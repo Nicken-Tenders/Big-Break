@@ -19,7 +19,8 @@ public class PanelManager : MonoBehaviour
     private BoxCollider _panelCollider;
 
     [Header("Gameplay")]
-    [SerializeField] private float _explosionForce;
+    [SerializeField] private float _explosionForceMin;
+    [SerializeField] private float _explosionForceMax;
     [SerializeField] private int _matIndex;
     private int _winGoal;
     private int _breakDmg;
@@ -27,7 +28,7 @@ public class PanelManager : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource _matSource;
     [SerializeField] private SoundEffects _punchSounds;
-    [SerializeField] private AudioSource _victorySound;
+    [SerializeField] private AudioSource _victorySource;
     private SoundEffects _materialSounds;
     private AudioSource _punchSource;
 
@@ -133,7 +134,7 @@ public class PanelManager : MonoBehaviour
         Rigidbody chipRB = _breakOffPiecesList[0].GetComponent<Rigidbody>();
         chipRB.isKinematic = false;
         chipRB.useGravity = true;
-        chipRB.AddExplosionForce(_explosionForce, _impulsePoint.position, 4f);
+        chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
         _breakOffPiecesList.Remove(_breakOffPiecesList[0]);
         _hitsToChip = 0;
         ++_matIndex;
@@ -154,7 +155,7 @@ public class PanelManager : MonoBehaviour
             childRB.useGravity = true;
 
             // Create impulse force in front of the object
-            childRB.AddExplosionForce(_explosionForce, _impulsePoint.position, 4f);
+            childRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
             //StartCoroutine(Fade(child));
         }
 
@@ -291,7 +292,7 @@ public class PanelManager : MonoBehaviour
         Debug.Log("Win");
         _panelCollider.enabled = false;
         // Fanfare
-        _victorySound.Play();
+        _victorySource.Play();
         // Confetti
         _confetti.Play();
         ///Time.timeScale = 0.5f;
