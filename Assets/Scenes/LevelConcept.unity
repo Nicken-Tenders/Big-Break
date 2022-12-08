@@ -809,11 +809,17 @@ MonoBehaviour:
   _leftFistParticle: {fileID: 198054063550621953}
   _panels:
   - {fileID: 11400000, guid: 9d12b7e4cdaf4bb4997ba70d66f14f18, type: 2}
-  - {fileID: 11400000, guid: e251bab63b96a1b4f87bd319d3447563, type: 2}
-  - {fileID: 11400000, guid: 5b9bc109e5867df46ba0a5edad43c7a0, type: 2}
-  - {fileID: 11400000, guid: d1583dcdeebb41343bda603e4b24d92a, type: 2}
-  - {fileID: 11400000, guid: 8be6298a25de65945a66e86402c1bf7d, type: 2}
+  - {fileID: 11400000, guid: e79501e0db7de33479d418568e5fea99, type: 2}
+  - {fileID: 11400000, guid: 4950499cd61b4ca49b7bc4db7ff22612, type: 2}
+  - {fileID: 11400000, guid: d3c948f387781e649bd4e74cbaf8ec02, type: 2}
+  - {fileID: 11400000, guid: 94f9067e32353fd47a04c1898ee74ab2, type: 2}
+  - {fileID: 11400000, guid: a743bb59b8911d941be71093b6923975, type: 2}
+  - {fileID: 11400000, guid: e79501e0db7de33479d418568e5fea99, type: 2}
+  - {fileID: 11400000, guid: 23e12383409efba49a3cb13cc5686649, type: 2}
+  - {fileID: 11400000, guid: ead48c873224bca4e98ddf8ffd0a00e7, type: 2}
+  - {fileID: 11400000, guid: ead48c873224bca4e98ddf8ffd0a00e7, type: 2}
   _explosionForce: 300
+  _matIndex: 0
   _matSource: {fileID: 243125499}
   _punchSounds: {fileID: 11400000, guid: 5107cdeec8e2d5d48ba6d608c2ab4d2b, type: 2}
 --- !u!82 &521564650

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChangeMaterialScript : MonoBehaviour
 {
     public Material[] panelMaterial;
-    Renderer panelRenderer;
+    private Renderer panelRenderer;
 
 
 
@@ -22,9 +22,9 @@ public class ChangeMaterialScript : MonoBehaviour
         panelRenderer.sharedMaterial = panelMaterial[0];
     }
 
-    public void ChangeMaterial()
+    public void ChangeMaterial(int matIndex)
     {
-        panelRenderer.sharedMaterial = panelMaterial[1];
+        panelRenderer.sharedMaterial = panelMaterial[matIndex];
     }
 
 }
