@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: 1545619011194a449afab4ac4104f22c, type: 2}
   - {fileID: 2100000, guid: 2e9d4238aebd7e346971b2a6cd1d95a2, type: 2}
   - {fileID: 2100000, guid: 24a9384b51bed3f44b4fd51de9dcc010, type: 2}
   - {fileID: 2100000, guid: f9848b598380baa4394fb003420a7565, type: 2}
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelMaterial:
+  - {fileID: 2100000, guid: 1545619011194a449afab4ac4104f22c, type: 2}
   - {fileID: 2100000, guid: 2e9d4238aebd7e346971b2a6cd1d95a2, type: 2}
   - {fileID: 2100000, guid: 24a9384b51bed3f44b4fd51de9dcc010, type: 2}
   - {fileID: 2100000, guid: f9848b598380baa4394fb003420a7565, type: 2}
@@ -614,11 +616,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545590265635459318}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 648bda0de278a6a48b448e4c993345fc,
-        type: 3}
-      propertyPath: m_Name
-      value: wood3_panel_break1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 648bda0de278a6a48b448e4c993345fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,6 +670,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 648bda0de278a6a48b448e4c993345fc,
+        type: 3}
+      propertyPath: m_Name
+      value: wood3_panel_break1
       objectReference: {fileID: 0}
     - target: {fileID: -2380079641619301865, guid: 648bda0de278a6a48b448e4c993345fc,
         type: 3}
