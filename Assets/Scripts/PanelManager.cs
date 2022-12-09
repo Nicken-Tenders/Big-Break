@@ -98,7 +98,7 @@ public class PanelManager : MonoBehaviour
         // Give animator random clip to play
         //int rn = Random.Range(1, 4);
         //_animator.Play("Punched" + rn);
-        _animator.Play("Shake 1");
+        _animator.SetTrigger("Shake 1");
 
         // Play Sound Effect
         _punchSource.clip = _punchSounds.soundEffects[Random.Range(0, _punchSounds.soundEffects.Length)];
