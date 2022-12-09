@@ -60,8 +60,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6521087826354120254}
   - component: {fileID: 1571420105863097601}
+  - component: {fileID: 5256481113211085695}
   m_Layer: 0
-  m_Name: Required Child
+  m_Name: Required Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5256481113211085695
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7637372052816959182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.11, y: 0.54, z: 0.07}
+  m_Center: {x: 0.01, y: 1.32, z: 0}
 --- !u!1001 &5947306528294347202
 PrefabInstance:
   m_ObjectHideFlags: 0
