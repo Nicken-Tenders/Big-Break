@@ -16,6 +16,6 @@ MonoBehaviour:
   model: {fileID: 1199590692232877425, guid: e364b7ff8b5d471408c393d84354eafc, type: 3}
   particles: {fileID: 1067536016464596, guid: 57e18706e2792ff4bb5561ed74b796e2, type: 3}
   breakOffPieces: 2
-  health: 5
+  health: 9
   soundList: {fileID: 11400000, guid: 36bf386571238884a8f575f0ad6cb282, type: 2}
   breakEffect: {fileID: 8300000, guid: 1961e7e7fbfb3cb43abcf18129678b17, type: 3}
