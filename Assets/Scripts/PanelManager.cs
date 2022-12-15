@@ -13,6 +13,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private GameObject _headTransform;
     [SerializeField] private GameObject _brokenPanels;
     [SerializeField] private GameObject _panelAnimator;
+    [SerializeField] private GameObject _liminalPanelShatter;
     [SerializeField] private ParticleSystem _rightFistParticle;
     [SerializeField] private ParticleSystem _leftFistParticle;
     [SerializeField] private ParticleSystem _confetti;
@@ -40,6 +41,7 @@ public class PanelManager : MonoBehaviour
     private int _currentHealth;
     private int _hitsToBreakOff;
     private int _hitsToChip;
+    private float _spawnDelay;
     private GameObject _panelModel;
     private GameObject _panelInstance;
     private GameObject _panelParticalSystem;
@@ -56,13 +58,6 @@ public class PanelManager : MonoBehaviour
         _winGoal = _panels.Count;
 
         CreatePanel();
-        Debug.Log(VRDevice.Device.PrimaryInputDevice);
-        Debug.Log(VRDevice.Device.SecondaryInputDevice);
-        if (VRDevice.Device.PrimaryInputDevice != null && VRDevice.Device.SecondaryInputDevice != null)
-        {
-            VRDevice.Device?.PrimaryInputDevice?.Pointer?.Deactivate();
-            VRDevice.Device?.SecondaryInputDevice?.Pointer?.Deactivate();
-        }
 
         _rightFistParticle.Stop();
         _leftFistParticle.Stop();
@@ -149,7 +144,6 @@ public class PanelManager : MonoBehaviour
         }
         _hitsToChip = 0;
         ++_matIndex;
-        Debug.Log(_matIndex);
         for (int i = 0; i < _corePiecesList.Count; i++)
         {
             if (_matIndex <= _breakOffPiecesList.Count || _panels[_panelIndex].name == "LiminalPanel")
@@ -161,27 +155,55 @@ public class PanelManager : MonoBehaviour
 
     public void Break()
     {
-        ++_breakDmg;
-        if (_breakOffPiecesList.Count > 0)
+        if (_panelIndex != (_panels.Count-1))
         {
-            foreach (GameObject chip in _breakOffPiecesList)
+            ++_breakDmg;
+            if (_breakOffPiecesList.Count > 0)
             {
-                Rigidbody chipRB = chip.GetComponent<Rigidbody>();
-                chipRB.isKinematic = false;
-                chipRB.useGravity = true;
-                chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
+                foreach (GameObject chip in _breakOffPiecesList)
+                {
+                    Rigidbody chipRB = chip.GetComponent<Rigidbody>();
+                    chipRB.isKinematic = false;
+                    chipRB.useGravity = true;
+                    chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
+                }
+            }
+            // Enable object gravity
+            foreach (GameObject child in _corePiecesList)
+            {
+                Rigidbody childRB = child.GetComponent<Rigidbody>();
+                childRB.isKinematic = false;
+                childRB.useGravity = true;
+
+                // Create impulse force in front of the object
+                childRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
+                //StartCoroutine(Fade(child));
             }
         }
-        // Enable object gravity
-        foreach (GameObject child in _corePiecesList)
+        else
         {
-            Rigidbody childRB = child.GetComponent<Rigidbody>();
-            childRB.isKinematic = false;
-            childRB.useGravity = true;
+            ++_breakDmg;
+            _breakOffPiecesList.Clear();
+            _corePiecesList.Clear();
+            Destroy(_panelInstance);
+            _panelInstance = Instantiate(_liminalPanelShatter, transform.position, transform.rotation);
+            //_panelInstance.transform.parent = _panelAnimator.transform;
+            //_matIndex = 0;
 
-            // Create impulse force in front of the object
-            childRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
-            //StartCoroutine(Fade(child));
+            for (int i = 0; i < _liminalPanelShatter.transform.childCount; i++)
+            {
+                _corePiecesList.Add(_panelInstance.transform.GetChild(i).gameObject);
+            }
+            // Enable object gravity
+            foreach (GameObject child in _corePiecesList)
+            {
+                Rigidbody childRB = child.GetComponent<Rigidbody>();
+                childRB.isKinematic = false;
+                childRB.useGravity = true;
+
+                // Create impulse force in front of the object
+                childRB.AddExplosionForce(Random.Range(_explosionForceMin+100, _explosionForceMax+100), _impulsePoint.position, 4f);
+            }
         }
 
         // Call CreatePanel()
@@ -196,7 +218,7 @@ public class PanelManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Wait(0.75f));
+            StartCoroutine(Wait(_spawnDelay));
         }
         // Unparent the shrapnel
     }
@@ -227,6 +249,9 @@ public class PanelManager : MonoBehaviour
 
             // Get Object Health
             _currentHealth = _panels[_panelIndex].health;
+            //_spawnDelay = (float)_currentHealth / 4;
+            _spawnDelay = _panels[_panelIndex].spawnDelay;
+            Debug.Log(_spawnDelay);
 
             // Instantiate panel
             _panelInstance = Instantiate(_panelModel, transform.position, transform.rotation);

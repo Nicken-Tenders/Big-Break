@@ -8,6 +8,7 @@ public class Panel : ScriptableObject
     public GameObject particles;
     public int breakOffPieces;
     public int health;
+    public float spawnDelay;
     public SoundEffects soundList;
     public AudioClip breakEffect;
 }

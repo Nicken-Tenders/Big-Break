@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37fbb6d7e7eebec499f642536f7b2f77, type: 3}
-  m_Name: Concrete
+  m_Name: WeakSlate
   m_EditorClassIdentifier: 
-  name: Concrete
-  model: {fileID: 5857276311269638216, guid: 9564c982db6843a4cbada8dd910e8afa, type: 3}
+  name: Weak Slate
+  model: {fileID: 3782883330655864842, guid: 2e170bdd88814ff4ab09258097dfd7ce, type: 3}
   particles: {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
-  breakOffPieces: 3
+  breakOffPieces: 2
   health: 3
-  spawnDelay: 0.75
   soundList: {fileID: 11400000, guid: 6826543fe95ec254d973c2ee0fcb53c8, type: 2}
   breakEffect: {fileID: 8300000, guid: 28c9c78d4ce40f649809e3c47fe536fd, type: 3}
