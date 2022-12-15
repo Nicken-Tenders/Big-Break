@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Liminal.SDK.Core;
+using Liminal.SDK.VR;
 using Liminal.Core.Fader;
 
 public class PanelManager : MonoBehaviour
@@ -55,6 +56,13 @@ public class PanelManager : MonoBehaviour
         _winGoal = _panels.Count;
 
         CreatePanel();
+        Debug.Log(VRDevice.Device.PrimaryInputDevice);
+        Debug.Log(VRDevice.Device.SecondaryInputDevice);
+        if (VRDevice.Device.PrimaryInputDevice != null && VRDevice.Device.SecondaryInputDevice != null)
+        {
+            VRDevice.Device?.PrimaryInputDevice?.Pointer?.Deactivate();
+            VRDevice.Device?.SecondaryInputDevice?.Pointer?.Deactivate();
+        }
 
         _rightFistParticle.Stop();
         _leftFistParticle.Stop();
@@ -154,6 +162,16 @@ public class PanelManager : MonoBehaviour
     public void Break()
     {
         ++_breakDmg;
+        if (_breakOffPiecesList.Count > 0)
+        {
+            foreach (GameObject chip in _breakOffPiecesList)
+            {
+                Rigidbody chipRB = chip.GetComponent<Rigidbody>();
+                chipRB.isKinematic = false;
+                chipRB.useGravity = true;
+                chipRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
+            }
+        }
         // Enable object gravity
         foreach (GameObject child in _corePiecesList)
         {
@@ -178,7 +196,7 @@ public class PanelManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Wait(1));
+            StartCoroutine(Wait(0.75f));
         }
         // Unparent the shrapnel
     }
@@ -269,7 +287,7 @@ public class PanelManager : MonoBehaviour
     }
 
     // Wait between spawning the next panel
-    public IEnumerator Wait(int waitTime)
+    public IEnumerator Wait(float waitTime)
     {
         _panelCollider.enabled = false;
         yield return new WaitForSeconds(waitTime);
