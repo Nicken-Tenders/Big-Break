@@ -817,11 +817,13 @@ MonoBehaviour:
   _headTransform: {fileID: 1682080734}
   _brokenPanels: {fileID: 1672747707}
   _panelAnimator: {fileID: 718046032}
+  _liminalPanelShatter: {fileID: 848731774606359657, guid: 9ee156dfebd4fe143a86481cf31ce705,
+    type: 3}
   _rightFistParticle: {fileID: 198054065239230572}
   _leftFistParticle: {fileID: 198054063550621953}
   _confetti: {fileID: 279265368}
   _panels:
-  - {fileID: 11400000, guid: 94f9067e32353fd47a04c1898ee74ab2, type: 2}
+  - {fileID: 11400000, guid: 9d12b7e4cdaf4bb4997ba70d66f14f18, type: 2}
   - {fileID: 11400000, guid: 4950499cd61b4ca49b7bc4db7ff22612, type: 2}
   - {fileID: 11400000, guid: 94f9067e32353fd47a04c1898ee74ab2, type: 2}
   - {fileID: 11400000, guid: d3c948f387781e649bd4e74cbaf8ec02, type: 2}
