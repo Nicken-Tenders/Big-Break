@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Liminal.SDK.Core;
 using Liminal.SDK.VR;
+using Liminal.SDK.VR.Input;
 using Liminal.Core.Fader;
 
 public class PanelManager : MonoBehaviour
@@ -10,10 +11,10 @@ public class PanelManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _impulsePoint;
-    [SerializeField] private GameObject _headTransform;
     [SerializeField] private GameObject _brokenPanels;
     [SerializeField] private GameObject _panelAnimator;
     [SerializeField] private GameObject _liminalPanelShatter;
+    [SerializeField] private GameObject _explosionFX;
     [SerializeField] private ParticleSystem _rightFistParticle;
     [SerializeField] private ParticleSystem _leftFistParticle;
     [SerializeField] private ParticleSystem _confetti;
@@ -23,7 +24,7 @@ public class PanelManager : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] private float _explosionForceMin;
     [SerializeField] private float _explosionForceMax;
-    [SerializeField] private int _matIndex;
+    private int _matIndex;
     private int _winGoal;
     private int _breakDmg;
 
@@ -59,12 +60,15 @@ public class PanelManager : MonoBehaviour
 
         CreatePanel();
 
+
+        /*Failed Disabling Attempt*/
+        //SetPointerActive(false, VRDevice.Device.PrimaryInputDevice);
+        //SetPointerActive(false, VRDevice.Device.SecondaryInputDevice);
+        //VRDevice.Device?.PrimaryInputDevice?.Pointer?.Deactivate();
+
         _rightFistParticle.Stop();
         _leftFistParticle.Stop();
         _confetti.Stop();
-
-
-        //transform.position = new Vector3(transform.position.x, headTransform.transform.position.y, transform.position.z);
     }
 
     void Update()
@@ -96,7 +100,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    public void Punch()
+    private void Punch()
     {
         // Give animator random clip to play
         //int rn = Random.Range(1, 4);
@@ -132,7 +136,7 @@ public class PanelManager : MonoBehaviour
         _particleInstanceSystem.Play();
     }
 
-    public void Chip()
+    private void Chip()
     {
         if (_breakOffPiecesList.Count > 0)
         {
@@ -153,7 +157,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    public void Break()
+    private void Break()
     {
         if (_panelIndex != (_panels.Count-1))
         {
@@ -177,7 +181,6 @@ public class PanelManager : MonoBehaviour
 
                 // Create impulse force in front of the object
                 childRB.AddExplosionForce(Random.Range(_explosionForceMin, _explosionForceMax), _impulsePoint.position, 4f);
-                //StartCoroutine(Fade(child));
             }
         }
         else
@@ -185,9 +188,22 @@ public class PanelManager : MonoBehaviour
             ++_breakDmg;
             _breakOffPiecesList.Clear();
             _corePiecesList.Clear();
+
             Destroy(_panelInstance);
+            if (_particleInstance != null)
+            {
+                Destroy(_particleInstance);
+                _particleInstanceSystem = null;
+            }
+            _particleInstance = Instantiate(_explosionFX, new Vector3(transform.position.x, (transform.position.y + 1.3f), transform.position.z), transform.rotation);
+            _particleInstance.transform.parent = transform;
+            _particleInstanceSystem = _particleInstance.GetComponent<ParticleSystem>();
+            _particleInstanceSystem.Play();
+
             _panelInstance = Instantiate(_liminalPanelShatter, transform.position, transform.rotation);
-            //_panelInstance.transform.parent = _panelAnimator.transform;
+            _panelInstance.transform.parent = _panelAnimator.transform;
+
+
             //_matIndex = 0;
 
             for (int i = 0; i < _liminalPanelShatter.transform.childCount; i++)
@@ -224,7 +240,7 @@ public class PanelManager : MonoBehaviour
     }
 
     // Creates and instantiates the current pannel
-    public void CreatePanel()
+    private void CreatePanel()
     {
         // Clear up parts of the previous panel
         if (_panelInstance != null)
@@ -298,6 +314,17 @@ public class PanelManager : MonoBehaviour
 
             // Add Sound Effects
             _materialSounds = _panels[_panelIndex].soundList;
+        }
+    }
+
+    void SetPointerActive(bool state, IVRInputDevice device)
+    {
+        if (device != null && device.Pointer != null)
+        {
+            if (state)
+                device.Pointer.Activate();
+            else
+                device.Pointer.Deactivate();
         }
     }
 
