@@ -17,6 +17,6 @@ MonoBehaviour:
   particles: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
   breakOffPieces: 0
   health: 1
-  spawnDelay: 0.2
+  spawnDelay: 0.4
   soundList: {fileID: 11400000, guid: 6e6885b63c07cfe46b9fe3efb603e708, type: 2}
   breakEffect: {fileID: 8300000, guid: 1d41a7327f0121f468058b4dfdd45ef3, type: 3}
