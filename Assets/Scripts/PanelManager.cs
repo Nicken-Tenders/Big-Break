@@ -24,7 +24,7 @@ public class PanelManager : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] private float _explosionForceMin;
     [SerializeField] private float _explosionForceMax;
-    private int _matIndex;
+    [SerializeField] private int _matIndex;
     private int _winGoal;
     private int _breakDmg;
 
@@ -48,8 +48,8 @@ public class PanelManager : MonoBehaviour
     private GameObject _panelParticalSystem;
     private GameObject _particleInstance;
     private ParticleSystem _particleInstanceSystem;
-    private List<GameObject> _corePiecesList = new List<GameObject>();
-    private List<GameObject> _breakOffPiecesList = new List<GameObject>();
+    [SerializeField] private List<GameObject> _corePiecesList = new List<GameObject>();
+    [SerializeField] private List<GameObject> _breakOffPiecesList = new List<GameObject>();
 
     private void Start()
     {
@@ -150,7 +150,9 @@ public class PanelManager : MonoBehaviour
         ++_matIndex;
         for (int i = 0; i < _corePiecesList.Count; i++)
         {
-            if (_matIndex <= _breakOffPiecesList.Count || _panels[_panelIndex].name == "LiminalPanel")
+            Debug.Log(_matIndex <= _breakOffPiecesList.Count);
+            Debug.Log(_breakOffPiecesList.Count);
+            if (_matIndex <= _panels[_panelIndex].breakOffPieces || _panels[_panelIndex].name == "LiminalPanel")
             {
                 _corePiecesList[i].gameObject.transform.GetChild(0).GetComponent<ChangeMaterialScript>().ChangeMaterial(_matIndex);
             }
@@ -185,6 +187,7 @@ public class PanelManager : MonoBehaviour
         }
         else
         {
+            _victorySource.Play();
             ++_breakDmg;
             _breakOffPiecesList.Clear();
             _corePiecesList.Clear();
@@ -267,7 +270,6 @@ public class PanelManager : MonoBehaviour
             _currentHealth = _panels[_panelIndex].health;
             //_spawnDelay = (float)_currentHealth / 4;
             _spawnDelay = _panels[_panelIndex].spawnDelay;
-            Debug.Log(_spawnDelay);
 
             // Instantiate panel
             _panelInstance = Instantiate(_panelModel, transform.position, transform.rotation);
@@ -282,6 +284,7 @@ public class PanelManager : MonoBehaviour
 
             // Clear list of components
             _corePiecesList.Clear();
+            _breakOffPiecesList.Clear();
 
             // Get a list of all break of pieces
             int childIndex = 0;
@@ -350,9 +353,8 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
-                _musicFade = true;
+        _musicFade = true;
         _panelCollider.enabled = false;
-        _victorySource.Play();
         _confetti.Play();
         ///Time.timeScale = 0.5f;
         ///yield return new WaitForSecondsRealtime(2);

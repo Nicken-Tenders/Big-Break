@@ -46,7 +46,6 @@ MonoBehaviour:
   panelMaterial:
   - {fileID: 2100000, guid: 510efab119c4594419f6a70ef775db86, type: 2}
   - {fileID: 2100000, guid: 64d22c17329c27a4c8355216c4a466bd, type: 2}
-  - {fileID: 2100000, guid: 51b98bbeb9f4372419ed548bc1e4cf1d, type: 2}
   - {fileID: 2100000, guid: e6d27564a6522a448a9d4015874af675, type: 2}
   - {fileID: 2100000, guid: 4e00803a45b2c6f41b1dc9cd6fd16e3e, type: 2}
   - {fileID: 2100000, guid: 9a95dba3e8166f243b3a97a895add466, type: 2}
