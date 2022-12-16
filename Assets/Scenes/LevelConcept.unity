@@ -814,10 +814,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 521564651}
   _impulsePoint: {fileID: 500019522}
-  _headTransform: {fileID: 1682080734}
   _brokenPanels: {fileID: 1672747707}
   _panelAnimator: {fileID: 718046032}
   _liminalPanelShatter: {fileID: 848731774606359657, guid: 9ee156dfebd4fe143a86481cf31ce705,
+    type: 3}
+  _explosionFX: {fileID: 1809022330002312, guid: ed511b7776af6174e9b1255c7a81e59c,
     type: 3}
   _rightFistParticle: {fileID: 198054065239230572}
   _leftFistParticle: {fileID: 198054063550621953}
@@ -847,7 +848,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 583deb8a1c21658418f444600c0af43e, type: 2}
   _explosionForceMin: 200
   _explosionForceMax: 500
-  _matIndex: 0
   _matSource: {fileID: 243125499}
   _victorySource: {fileID: 1073430662}
   _music: {fileID: 645939681}
@@ -2107,12 +2107,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1682080734 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1260162968516261970, guid: 22276a8657744e04cba8ad0a2caf4195,
-    type: 3}
-  m_PrefabInstance: {fileID: 141072767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1804072704
 GameObject:
   m_ObjectHideFlags: 0
