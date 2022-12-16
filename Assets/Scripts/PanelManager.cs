@@ -350,6 +350,7 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
+        _musicFade = true;
         _panelCollider.enabled = false;
         _victorySource.Play();
         _confetti.Play();
@@ -357,8 +358,6 @@ public class PanelManager : MonoBehaviour
         ///yield return new WaitForSecondsRealtime(2);
         ///Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(3);
-
-        _musicFade = true;
         var fader = ScreenFader.Instance;
         fader.FadeTo(Color.black, 2);
         yield return new WaitForSecondsRealtime(2);
