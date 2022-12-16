@@ -307,7 +307,7 @@ public class PanelManager : MonoBehaviour
             {
                 _hitsToBreakOff = _currentHealth / _panels[_panelIndex].breakOffPieces;
             }
-            else if (_panels[_panelIndex].name == "LiminalPanel")
+            else if (_panelIndex == (_panels.Count - 1))
             {
                 _hitsToBreakOff = _currentHealth / 5;
             }
@@ -350,7 +350,7 @@ public class PanelManager : MonoBehaviour
     // Complete the victory condition
     public IEnumerator Win()
     {
-        _musicFade = true;
+                _musicFade = true;
         _panelCollider.enabled = false;
         _victorySource.Play();
         _confetti.Play();
